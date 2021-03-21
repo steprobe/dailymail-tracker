@@ -1,10 +1,23 @@
+require('dotenv').config();
 const express = require('express');
 const listEndpoints = require('express-list-endpoints');
+const connectToDb = require('./config/db');
+const track = require('./jobs/track');
 
 const app = express();
 
+connectToDb();
+
+app.set('view engine', 'ejs');
+
 app.get('/', (req, res) => {
-  res.send('Welcome to the jungle');
+  res.render('homepage');
+});
+
+app.get('/track', async (req, res) => {
+  const page = await track();
+  console.log(page);
+  res.send(page.data);
 });
 
 console.log(listEndpoints(app));

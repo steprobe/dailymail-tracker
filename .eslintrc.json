@@ -1,0 +1,22 @@
+{
+    "plugins": ["prettier"],
+    "env": {
+        "es2020": true,
+        "node": true,
+        "mocha": true
+    },
+    "extends": [
+        "airbnb-base",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "rules": {
+        "prettier/prettier": "error",
+        "no-console": "off",
+        "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+        "operator-linebreak": "off"
+    }
+}

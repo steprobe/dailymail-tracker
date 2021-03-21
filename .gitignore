@@ -1,0 +1,6 @@
+client/node_modules
+node_modules
+template/node_modules
+server/.idea
+.env
+/.project

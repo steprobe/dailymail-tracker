@@ -1,0 +1,60 @@
+name: Build client and server
+
+on: [push]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up env
+        run: npm ci
+
+      - name: Lint app
+        run: npm run lint
+
+      - name: Test app
+        run: npm run test
+
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+      - name: Build Docker Image
+        run: docker build -t registry.heroku.com/dailymail-tracker-staging/web -t registry.heroku.com/dailymail-tracker-prod/web .
+
+      - name: Push Image to Heroku (staging)
+        if: github.ref == 'refs/heads/development'
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login && docker push registry.heroku.com/dailymail-tracker-staging/web
+
+      - name: Push Image to Heroku (prod)
+        if: github.ref == 'refs/heads/main'
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login && docker push registry.heroku.com/dailymail-tracker-prod/web
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [verify, build-image]
+    # https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Release staging on Heroku
+        if: github.ref == 'refs/heads/development'
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:release web -a dailymail-tracker-staging
+
+      - name: Release prod on Heroku
+        if: github.ref == 'refs/heads/main'
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:release web -a dailymail-tracker-prod

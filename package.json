@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node server",
-    "dev": "nodemon server",
+    "scss-dev": "node-sass -w views/scss/ --recursive -o public/css",
+    "scss-build": "node-sass -w views/scss/ -o public/css/ --recursive",
+    "dev": " nodemon server",
     "lint": "eslint .",
     "lintf": "eslint --fix .",
     "test": "NODE_ENV=test mocha --recursive test --require @babel/register --exit --timeout 5000"
@@ -23,7 +25,9 @@
     "express-list-endpoints": "^5.0.0",
     "got": "^11.8.2",
     "jsdom": "^16.5.1",
-    "mongoose": "^5.12.1"
+    "mongoose": "^5.12.1",
+    "node-sass": "^5.0.0",
+    "sass": "^1.32.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.10",

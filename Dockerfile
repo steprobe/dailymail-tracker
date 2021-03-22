@@ -5,6 +5,8 @@ COPY package.json /app/
 RUN npm install
 
 COPY . /app/
-WORKDIR /app/ 
+WORKDIR /app/
+RUN npm run scss-build
+
 CMD ["npm", "start"]
 

@@ -8,10 +8,16 @@ const app = express();
 
 connectToDb();
 
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-  res.render('homepage');
+app.get(['/', '/day', '/week', '/month', '/year'], (req, res) => {
+  const type = req.url.split('/')[1] || 'day';
+  res.render('homepage', {
+    data: {
+      type,
+    },
+  });
 });
 
 app.get('/track', async (req, res) => {

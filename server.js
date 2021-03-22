@@ -15,9 +15,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/track', async (req, res) => {
-  const page = await track();
-  console.log(page);
-  res.send(page.data);
+  await track();
+  res.send('there we go');
 });
 
 console.log(listEndpoints(app));

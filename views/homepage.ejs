@@ -5,11 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+
+    <script language="javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" type="text/css" />
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <title>Dailymail Favourite Words</title>
   </head>
 
-  <body>
+  <body id="body">
+
+    <div class="dt-nav">
+
+      <div class="dt-options">
+        <a class="one" href="#">DAY</a>
+        <a class="two" href="#">WEEK</a>
+        <a class="three" href="#">MONTH</a>
+        <a class="four" href="#">YEAR</a>
+      </div>
+      <hr id="active-option" />
+
+
+    </div>
+
     Dailymail word of the <%= data.type %>
   </body>
 

@@ -8,6 +8,10 @@ const app = express();
 
 connectToDb();
 
+app.use(
+  '/bootstrap',
+  express.static(`${__dirname}/node_modules/bootstrap/dist`),
+);
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 

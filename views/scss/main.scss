@@ -1,3 +1,54 @@
-body {
-  background: green;
+//https://coolors.co/048a81-06d6a0-54c6eb-8a89c0-cda2ab
+$celadon-green: #048a81ff;
+$caribbean-green: #06d6a0ff;
+$vivid-sky-blue: #54c6ebff;
+$blue-bell: #8a89c0ff;
+$tuscany: #cda2abff;
+
+.dt-nav {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .dt-options {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    //https://speckyboy.com/underline-text-effects-css/
+      a {
+      display: inline-block;
+      width: 25%;
+      padding: 0.75rem 0;
+      margin: 0;
+      text-decoration: none;
+      color: #333;
+    }
+  }
+}
+
+.two:hover ~ #active-option {
+  background-color: blue;
+  margin-left: 25%;
+}
+
+.three:hover ~ hr {
+  margin-left: 50%;
+}
+
+.four:hover ~ hr {
+  margin-left: 75%;
+}
+
+hr {
+  height: 0.35rem;
+  width: 2rem;
+  margin: 0;
+  background: tomato;
+  border: none;
+  transition: 0.3s ease-in-out;
+}
+
+#body {
+  background: $caribbean-green;
 }

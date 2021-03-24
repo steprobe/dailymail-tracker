@@ -15,13 +15,12 @@ app.use(
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-app.get(['/', '/day', '/week', '/month', '/year'], (req, res) => {
-  const type = req.url.split('/')[1] || 'day';
-  res.render('homepage', {
-    data: {
-      type,
-    },
-  });
+app.get('/', (req, res) => {
+  res.render('homepage');
+});
+
+app.get('/about', (req, res) => {
+  res.render('about');
 });
 
 app.get('/track', async (req, res) => {

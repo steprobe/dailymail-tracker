@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script language="javascript" src="/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" type="text/css" />
 
@@ -13,22 +15,14 @@
     <title>Dailymail Favourite Words</title>
   </head>
 
-  <body id="body">
-
-    <div class="dt-nav">
-
-      <div class="dt-options">
-        <a class="one" href="#">DAY</a>
-        <a class="two" href="#">WEEK</a>
-        <a class="three" href="#">MONTH</a>
-        <a class="four" href="#">YEAR</a>
-      </div>
-      <hr id="active-option" />
+  <body id="body d-flex justify-content-center">
+    <nav class="nav mt-4">
+      <a href="/" class="nav-item is-active" active-color="orange">HOME</a>
+      <a href="/about" class="nav-item" active-color="green">ABOUT</a>
+      <span class="nav-indicator"></span>
+    </nav>
 
 
-    </div>
-
-    Dailymail word of the <%= data.type %>
   </body>
 
 </html>

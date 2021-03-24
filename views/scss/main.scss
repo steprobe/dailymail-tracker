@@ -1,54 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;600&display=swap');
+
 //https://coolors.co/048a81-06d6a0-54c6eb-8a89c0-cda2ab
-$celadon-green: #048a81ff;
-$caribbean-green: #06d6a0ff;
-$vivid-sky-blue: #54c6ebff;
-$blue-bell: #8a89c0ff;
-$tuscany: #cda2abff;
+$background-color: #ede0d4;
+$nav-item-text-color: #7f5539;
+$nav-item-hover-text-color: #cd9777;
+$nav-item-selected-underline: #7f5539;
+$nav-item-hover-underline: #cd9777;
 
-.dt-nav {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+// $almond: #ede0d4ff;
+// $desert-sand: #e6ccb2ff;
+// $tan: #ddb892ff;
+// $cafe-au-lait: #b08968ff;
+// $coffee: #7f5539ff;
+// $brown-sugar: #9c6644ff;
+* {
+  box-sizing: border-box;
+}
 
-  .dt-options {
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    //https://speckyboy.com/underline-text-effects-css/
-      a {
-      display: inline-block;
-      width: 25%;
-      padding: 0.75rem 0;
-      margin: 0;
-      text-decoration: none;
-      color: #333;
+body {
+  text-align: center;
+  background-color: $background-color;
+  font-family: 'Doris', sans-serif;
+}
+
+.nav {
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.nav-item {
+  font-size: 20px;
+  color: white;
+  padding: 20px;
+  text-decoration: none;
+  margin: 0 10px;
+  z-index: 1;
+  position: relative;
+  color: $nav-item-text-color;
+  text-decoration: none;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: $nav-item-hover-underline;
+    opacity: 0;
+  }
+
+  &.is-active:before {
+    opacity: 1;
+    bottom: 0;
+    background-color: $nav-item-selected-underline;
+  }
+
+  &:hover:before {
+    opacity: 1;
+    bottom: 0;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: $nav-item-hover-text-color;
+    &.is-active {
+      color: $nav-item-text-color;
     }
   }
 }
 
-.two:hover ~ #active-option {
-  background-color: blue;
-  margin-left: 25%;
+.nav-indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  transition: 3.4s;
+  height: 5px;
+  z-index: 1;
+  border-radius: 8px 8px 0 0;
 }
 
-.three:hover ~ hr {
-  margin-left: 50%;
-}
+.about-copy {
+  background-color: lighten($color: $background-color, $amount: 7%);
+  margin-top: 4rem;
+  padding: 4rem 10% 4rem 10%;
+  border-radius: 8px;
 
-.four:hover ~ hr {
-  margin-left: 75%;
-}
+  h5 {
+    font-family: 'Dosis', sans-serif;
+    font-weight: 600;
+  }
 
-hr {
-  height: 0.35rem;
-  width: 2rem;
-  margin: 0;
-  background: tomato;
-  border: none;
-  transition: 0.3s ease-in-out;
-}
-
-#body {
-  background: $caribbean-green;
+  p {
+    line-height: 30px !important;
+    font: 18px Doris, Serif;
+    text-align: left;
+    margin-top: 1rem;
+    font-weight: 200;
+  }
 }

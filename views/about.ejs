@@ -16,23 +16,20 @@
   </head>
 
   <body id="body d-flex justify-content-center">
-    <nav class="nav mt-4">
-      <a href="/" class="nav-item" active-color="orange">HOME</a>
-      <a href="/about" class="nav-item is-active" active-color="green">ABOUT</a>
-      <span class="nav-indicator"></span>
-    </nav>
+    <%- include('partials/menu', {active: "about" }) %>
 
-    <div class="card container about-copy col-xs-4 col-md-8 col-lg-6">
+      <div class="card container about-copy col-xs-4 col-md-8 col-lg-6">
 
-      <h5>Why do we need a dailymail word of the day?</h5>
-      <p>
-        Well, we don't really. But we thought it would be fun to track the recurring euphemisms, z-listers and flat-out
-        racism they publish everyday with the express goal of getting you to click through just one of the 100's of
-        articles, to see more ads. They do this by instilling fear of foreigners or the "radical left". Failing that,
-        they fall back on enticing you via eyepopping displays of the ample assets of women that flaunted them right in
-        front of a telescopic lens, 2km away in a bush.
-      </p>
-    </div>
+        <h5>Why do we need a dailymail word of the day?</h5>
+        <p>
+          Well, we don't really. But we thought it would be fun to track the recurring euphemisms, z-listers and
+          flat-out
+          racism they publish everyday with the express goal of getting you to click through just one of the 100's of
+          articles, to see more ads. They do this by instilling fear of foreigners or the "radical left". Failing that,
+          they fall back on enticing you via eyepopping displays of the ample assets of a woman who flaunted them right
+          in front of a telescopic lens, 2km away in a bush.
+        </p>
+      </div>
   </body>
 
 </html>

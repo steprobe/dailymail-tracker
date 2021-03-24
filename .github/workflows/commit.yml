@@ -14,6 +14,9 @@ jobs:
       - name: Lint app
         run: npm run lint
 
+      - name: EJS Lint app
+        run: npm run lintejs
+
       - name: Test app
         run: npm run test
 

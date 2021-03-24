@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const listEndpoints = require('express-list-endpoints');
 const connectToDb = require('./config/db');
-const track = require('./jobs/track');
 
 const app = express();
 
@@ -15,18 +14,9 @@ app.use(
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-  res.render('homepage');
-});
-
-app.get('/about', (req, res) => {
-  res.render('about');
-});
-
-app.get('/track', async (req, res) => {
-  await track();
-  res.send('there we go');
-});
+app.get('/', (req, res) => res.render('homepage'));
+app.get('/about', (req, res) => res.render('about'));
+app.get('/alanjohnson', async (req, res) => res.render('admin'));
 
 console.log(listEndpoints(app));
 

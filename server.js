@@ -76,7 +76,7 @@ const login = async (req, res) => {
     });
 
     res.cookie('token', token);
-    res.redirect('/alanjohnson');
+    res.redirect('/admin');
   } else {
     res.render('adminLogin', { failed: true });
   }
@@ -94,14 +94,24 @@ app.get('/superhans', (req, res) =>
 );
 app.post('/superhans/login', (req, res) => login(req, res));
 app.post('/superhans/logout', (req, res) => logout(req, res));
-app.get('/alanjohnson', auth, async (req, res) => {
+
+app.get('/admin', auth, async (req, res) => {
   res.render('admin', await getState());
 });
-app.post('/alanjohnson/sync', auth, async (req, res) => {
+
+app.get('/admin/keywords', auth, async (req, res) => {
+  res.render('adminKeywords', await getState());
+});
+
+app.get('/admin/articles', auth, async (req, res) => {
+  res.render('adminArticles', await getState());
+});
+
+app.post('/admin/sync', auth, async (req, res) => {
   await track();
   res.render('admin', await getState());
 });
-app.post('/alanjohnson/saveKeywords', auth, async (req, res) => {
+app.post('/admin/saveKeywords', auth, async (req, res) => {
   try {
     await saveKeywords(req.body);
   } catch (err) {
@@ -109,7 +119,7 @@ app.post('/alanjohnson/saveKeywords', auth, async (req, res) => {
     return res.status(500).send();
   }
 
-  return res.redirect('/alanjohnson');
+  return res.redirect('/admin/keywords');
 });
 
 console.log(listEndpoints(app));

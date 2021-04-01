@@ -1,5 +1,8 @@
 const cheerio = require('cheerio');
 const got = require('got');
+const Keywords = require('../models/Keyword');
+const Article = require('../models/Article');
+const MetaData = require('../models/Metadata');
 
 const trim = (text) => text.replace(/^\s+|\s+$/g, '');
 
@@ -56,12 +59,21 @@ const track = async () => {
   const response = await got('https://www.dailymail.co.uk/home/index.html');
   const $ = cheerio.load(response.body);
 
-  const keywords = ['Hilary', 'Jesy'];
+  const res = await Keywords.findOne();
+  const keywords = res ? res.keywords : [];
 
   const results = [
     ...parseArticles($, keywords),
     ...parseColumnOfShame($, keywords),
   ];
+
+  await Article.deleteMany({});
+  await Article.insertMany(results);
+
+  await MetaData.deleteMany({});
+  await MetaData.create({
+    itemsSynced: results.length,
+  });
 
   console.log(results);
 };

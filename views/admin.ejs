@@ -6,18 +6,159 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script language="javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" type="text/css" />
-
     <link rel="stylesheet" type="text/css" href="/css/admin.css" />
 
-    <title>Document</title>
+    <title>Admin</title>
   </head>
 
   <body>
+    <div class="container mt-5">
+      <h1 class="text-center text-primary">Dailymail Tracker Page Admin</h1>
+      <p class="lead text-center text-muted">Control sync, latest data + keywords</p>
+      <div class="col text-center">
+        <form action="/superhans/logout" method="post">
+          <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+      </div>
+      <hr>
+    </div>
 
+    <div class="container d-flex justify-content-between mt-5 mb-5">
+      <p class="lead align-self-left"><b class="mr-5">Last Sync:</b> 25/07/1984 04:05am</p>
+      <form action="/alanjohnson/sync" method="post">
+        <button type="submit" class="btn btn-warning">Sync Now</button>
+      </form>
+    </div>
+
+    <div class="container mt-5 mb-5">
+
+      <form action="/alanjohnson/saveKeywords" method="post" id="keywordsForm">
+
+        <% for(var i=0; i<keywords.length; i++) {%>
+          <div class="form-group" id="<%=keywords[i]._id%>">
+            <div class="d-flex mt-1">
+              <input type="text" name="newKeywordName" placeholder="Keyword" class="form-control" required="required"
+                value="<%= keywords[i].keyword%>"></input>
+              <button type="button" class="btn btn-danger ml-1"
+                onclick="removeElement('<%= keywords[i]._id%>')">X</button>
+            </div>
+            <select class="form-control mt-1" name="newKeywordType" selected="<%= keywords[i].type%>">
+              <option>Dictionary</option>
+              <option>Wikipedia</option>
+            </select>
+            <textarea required="required" type="text" name="newKeywordDescription" placeholder="Description"
+              class="form-control mt-1"><%= keywords[i].description%></textarea>
+          </div>
+
+          <% } %>
+
+            <div class=" form-group">
+              <label>New Keyword:</label>
+              <input type="text" name="newKeywordName" placeholder="Keyword" class="form-control mt-1"></input>
+              <select class="form-control mt-1" name="newKeywordType">
+                <option>Dictionary</option>
+                <option>Wikipedia</option>
+              </select>
+              <textarea type="text" name="newKeywordDescription" placeholder="Description"
+                class="form-control mt-1"></textarea>
+            </div>
+
+            <div class="alert alert-danger mb-2 hidden" id="keywords-fail">All values are required</div>
+
+            <button type="submit" class="btn btn-success btn-block">Save Keywords</button>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+
+      <table class="table table-striped" id="article-table">
+
+        <tr>
+          <td colspan="5">
+            <input type="text" id="article-table-filter" placeholder="Filter Articles" class="form-control"></input>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Headline</th>
+          <th>Article</th>
+          <th>Link</th>
+          <th>Image</th>
+          <th></th>
+        </tr>
+
+        <tr class="article">
+          <td>Lorem ipsum dolor sit amet.</td>
+          <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus eligendi illo laudantium hic minima qui.
+            Ipsum hic, eum illo eveniet expedita deleniti similique perspiciatis, distinctio porro error perferendis
+            voluptates esse sed tempora vitae. Accusamus ea repellat, perspiciatis error quia rerum nulla quod excepturi
+            consectetur. Rem laudantium accusantium laborum quasi placeat.</td>
+          <td><a href="www.google.com">www.google.com</a></td>
+          <td><img src="https://via.placeholder.com/50"></img></td>
+          <td><button type="button" class="btn btn-danger">X</button></td>
+        </tr>
+
+        <tr class="article">
+          <td>Lorem ipsum dolor sit amet.</td>
+          <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus eligendi illo laudantium hic minima qui.
+            Ipsum hic, eum illo eveniet expedita deleniti similique perspiciatis, distinctio porro error perferendis
+            voluptates esse sed tempora vitae. Accusamus ea repellat, perspiciatis error quia rerum nulla quod excepturi
+            consectetur. Rem laudantium accusantium laborum quasi placeat.</td>
+          <td><a href="www.google.com">www.google.com</a></td>
+          <td><img src="https://via.placeholder.com/50"></img></td>
+          <td><button type="button" class="btn btn-danger">X</button></td>
+        </tr>
+
+        <tr class="article">
+          <td>Lorem ipsum dolor sit amet.</td>
+          <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus eligendi illo laudantium hic minima qui.
+            Ipsum hic, eum illo eveniet expedita deleniti similique perspiciatis, distinctio porro error perferendis
+            voluptates esse sed tempora vitae. Accusamus ea repellat, perspiciatis error quia rerum nulla quod excepturi
+            consectetur. Rem laudantium accusantium laborum quasi placeat.</td>
+          <td><a href="www.google.com">www.google.com</a></td>
+          <td><img src="https://via.placeholder.com/50"></img></td>
+          <td><button type="button" class="btn btn-danger">X</button></td>
+        </tr>
+
+        <tr class="article">
+          <td>Lorem ipsum dolor sit amet.</td>
+          <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus eligendi illo laudantium hic minima qui.
+            Ipsum hic, eum illo eveniet expedita deleniti similique perspiciatis, distinctio porro error perferendis
+            voluptates esse sed tempora vitae. Accusamus ea repellat, perspiciatis error quia rerum nulla quod excepturi
+            consectetur. Rem laudantium accusantium laborum quasi placeat.STEOTIME</td>
+          <td><a href="www.google.com">www.google.com</a></td>
+          <td><img src="https://via.placeholder.com/50"></img></td>
+          <td><button type="button" class="btn btn-danger">X</button></td>
+        </tr>
+      </table>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#article-table-filter").on("keyup", function () {
+          var value = $(this).val().toLowerCase();
+          $("#article-table .article").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+
+
+      const removeElement = (id) => {
+        var elem = document.getElementById(id);
+        elem.parentNode.removeChild(elem);
+
+        document.getElementById("keywordsForm").submit()
+      }
+
+    </script>
   </body>
 
 </html>

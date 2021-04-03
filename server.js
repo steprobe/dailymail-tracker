@@ -37,7 +37,7 @@ const saveKeywords = async (form) => {
         form.newKeywordDescription[i]
       ) {
         objects.push({
-          keyword: form.newKeywordName[i],
+          matches: form.newKeywordName[i].split(','),
           type: form.newKeywordType[i],
           description: form.newKeywordDescription[i],
         });
@@ -51,7 +51,7 @@ const saveKeywords = async (form) => {
     form.newKeywordDescription
   ) {
     await Keyword.create({
-      keyword: form.newKeywordName,
+      matches: form.newKeywordName.split(','),
       type: form.newKeywordType,
       description: form.newKeywordDescription,
     });
@@ -101,8 +101,7 @@ app.post('/superhans/login', (req, res) => login(req, res));
 app.post('/superhans/logout', (req, res) => logout(req, res));
 
 app.get('/admin', auth, async (req, res) => {
-  const state = await getState();
-  res.render('admin', state);
+  res.render('admin', await getState());
 });
 
 app.get('/admin/keywords', auth, async (req, res) => {

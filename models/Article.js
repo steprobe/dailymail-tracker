@@ -6,6 +6,7 @@ const ArticleSchema = new mongoose.Schema(
     articleText: { type: String },
     href: { type: String },
     image: { type: String },
+    matched: [{ type: Object }],
   },
   { timestamps: true },
 );

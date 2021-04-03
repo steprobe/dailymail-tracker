@@ -6,14 +6,19 @@ const MetaData = require('../models/Metadata');
 
 const trim = (text) => text.replace(/^\s+|\s+$/g, '');
 
-const articleMatcher = (article, keywords) =>
-  keywords.some(
-    (keyword) =>
-      (article.headline &&
-        article.headline.toLowerCase().includes(keyword.toLowerCase())) ||
-      (article.articleText &&
-        article.articleText.toLowerCase().includes(keyword.toLowerCase())),
-  );
+const assignKeywords = (article, keywords) => {
+  keywords.forEach((keyword) => {
+    const isMatch = keyword.matches.some(
+      (word) =>
+        article.headline &&
+        article.headline.toLowerCase().includes(word.toLowerCase()),
+    );
+
+    if (isMatch) {
+      article.matched.push(keyword);
+    }
+  });
+};
 
 const parseColumnOfShame = ($, keywords) => {
   // TODO: Map + filter
@@ -25,9 +30,11 @@ const parseColumnOfShame = ($, keywords) => {
       articleText: null,
       href: $(element).find('a:first').attr('href'),
       image: $(element).find('img').attr('data-src'),
+      matched: [],
     };
 
-    if (!keywords || articleMatcher(article, keywords)) {
+    assignKeywords(article, keywords);
+    if (!keywords || article.matched.length > 0) {
       results.push(article);
     }
   });
@@ -51,9 +58,11 @@ const parseArticles = ($, keywords) => {
       articleText: trim(articleText),
       href: $(element).find('a').attr('href'),
       image: $(element).find('img').attr('data-src'),
+      matched: [],
     };
 
-    if (!keywords || articleMatcher(article, keywords)) {
+    assignKeywords(article, keywords);
+    if (!keywords || article.matched.length > 0) {
       results.push(article);
     }
   });
@@ -65,9 +74,7 @@ const track = async () => {
   const response = await got('https://www.dailymail.co.uk/home/index.html');
   const $ = cheerio.load(response.body);
 
-  // const res = await Keywords.findOne();
-  // const keywords = res ? res.keywords : [];
-  const keywords = null;
+  const keywords = await Keywords.find({});
 
   const results = [
     ...parseArticles($, keywords),

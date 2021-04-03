@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const KeywordSchema = new mongoose.Schema(
   {
-    keyword: { type: String, required: true },
+    // An array to match different grammatical uses (sizzles, sizzling etc) which are effectively the same thing
+    matches: [{ type: String, required: true }],
     type: { type: String, enum: ['Wikipedia', 'Dictionary'], required: true },
     description: { type: String, required: true },
   },

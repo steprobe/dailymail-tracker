@@ -31,6 +31,7 @@
             <th>Article</th>
             <th>Link</th>
             <th>Image</th>
+            <th>Matched Keyword</th>
             <th></th>
           </tr>
 
@@ -48,6 +49,9 @@
                   <%= articles[i].href%>
                 </a></td>
               <td><img class="article-image" src="<%= articles[i].image%>"></img></td>
+              <td>
+                <%= articles[i].matched.map(it=> '[' + it.matches + ']') %>
+              </td>
               <td><button type="button" class="btn btn-danger">X</button></td>
             </tr>
 

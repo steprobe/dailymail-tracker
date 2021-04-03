@@ -17,6 +17,15 @@
 
   <body id="body d-flex justify-content-center">
     <%- include('partials/menu', { active: 'home' }) %>
+
+
+      <div class="container">
+
+        <h1>Word of the day is</h1>
+        <h3>
+          <%= JSON.stringify(rankings[0].keyword.matches[0]) %>
+        </h3>
+      </div>
   </body>
 
 </html>

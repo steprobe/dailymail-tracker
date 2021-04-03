@@ -23,8 +23,17 @@
 
         <h1>Word of the day is</h1>
         <h3>
-          <%= JSON.stringify(rankings[0].keyword.matches[0]) %>
+          <%= JSON.stringify(rankings[0].keyword.matches[0]) %> with <%= rankings[0].articles.length %> articles
         </h3>
+
+        <p>Followed by:</p>
+        <% for(i=1; i < rankings.length; i +=1) {%>
+
+          <p>
+            <%= JSON.stringify(rankings[i].keyword.matches[0]) %> with <%= rankings[i].articles.length %>
+                articles
+          </p>
+          <%} %>
       </div>
   </body>
 

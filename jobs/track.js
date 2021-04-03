@@ -27,7 +27,7 @@ const parseColumnOfShame = ($, keywords) => {
       image: $(element).find('img').attr('data-src'),
     };
 
-    if (articleMatcher(article, keywords)) {
+    if (!keywords || articleMatcher(article, keywords)) {
       results.push(article);
     }
   });
@@ -40,14 +40,20 @@ const parseArticles = ($, keywords) => {
   const results = [];
 
   $('div.article').each((i, element) => {
+    const candidate1 = $(element).find('.articletext p').text();
+    const candidate2 = $(element).find('.articletext-holder p').text();
+    const candidate3 = $(element).find('.articletext div p').text();
+
+    const articleText = candidate1 || candidate2 || candidate3;
+
     const article = {
       headline: trim($(element).find('a:first').text()),
-      articleText: trim($(element).find('.articletext p').text()),
+      articleText: trim(articleText),
       href: $(element).find('a').attr('href'),
       image: $(element).find('img').attr('data-src'),
     };
 
-    if (articleMatcher(article, keywords)) {
+    if (!keywords || articleMatcher(article, keywords)) {
       results.push(article);
     }
   });
@@ -59,8 +65,9 @@ const track = async () => {
   const response = await got('https://www.dailymail.co.uk/home/index.html');
   const $ = cheerio.load(response.body);
 
-  const res = await Keywords.findOne();
-  const keywords = res ? res.keywords : [];
+  // const res = await Keywords.findOne();
+  // const keywords = res ? res.keywords : [];
+  const keywords = null;
 
   const results = [
     ...parseArticles($, keywords),
@@ -75,7 +82,7 @@ const track = async () => {
     itemsSynced: results.length,
   });
 
-  console.log(results);
+  console.log(`Saved ${results.length} articles`);
 };
 
 module.exports = track;

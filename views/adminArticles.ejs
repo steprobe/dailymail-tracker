@@ -34,57 +34,24 @@
             <th></th>
           </tr>
 
-          <tr class="article">
-            <td>Lorem ipsum dolor sit amet.</td>
-            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus eligendi illo laudantium hic minima
-              qui.
-              Ipsum hic, eum illo eveniet expedita deleniti similique perspiciatis, distinctio porro error perferendis
-              voluptates esse sed tempora vitae. Accusamus ea repellat, perspiciatis error quia rerum nulla quod
-              excepturi
-              consectetur. Rem laudantium accusantium laborum quasi placeat.</td>
-            <td><a href="www.google.com">www.google.com</a></td>
-            <td><img src="https://via.placeholder.com/50"></img></td>
-            <td><button type="button" class="btn btn-danger">X</button></td>
-          </tr>
+          <% for(var i=0; i<articles.length; i++) {%>
 
-          <tr class="article">
-            <td>Lorem ipsum dolor sit amet.</td>
-            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus eligendi illo laudantium hic minima
-              qui.
-              Ipsum hic, eum illo eveniet expedita deleniti similique perspiciatis, distinctio porro error perferendis
-              voluptates esse sed tempora vitae. Accusamus ea repellat, perspiciatis error quia rerum nulla quod
-              excepturi
-              consectetur. Rem laudantium accusantium laborum quasi placeat.</td>
-            <td><a href="www.google.com">www.google.com</a></td>
-            <td><img src="https://via.placeholder.com/50"></img></td>
-            <td><button type="button" class="btn btn-danger">X</button></td>
-          </tr>
 
-          <tr class="article">
-            <td>Lorem ipsum dolor sit amet.</td>
-            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus eligendi illo laudantium hic minima
-              qui.
-              Ipsum hic, eum illo eveniet expedita deleniti similique perspiciatis, distinctio porro error perferendis
-              voluptates esse sed tempora vitae. Accusamus ea repellat, perspiciatis error quia rerum nulla quod
-              excepturi
-              consectetur. Rem laudantium accusantium laborum quasi placeat.</td>
-            <td><a href="www.google.com">www.google.com</a></td>
-            <td><img src="https://via.placeholder.com/50"></img></td>
-            <td><button type="button" class="btn btn-danger">X</button></td>
-          </tr>
+            <tr class="article">
+              <td>
+                <%= articles[i].headline%>
+              </td>
+              <td>
+                <%= articles[i].articleText%>
+              </td>
+              <td><a target="_blank" href="http://dailymail.co.uk<%= articles[i].href%>">
+                  <%= articles[i].href%>
+                </a></td>
+              <td><img class="article-image" src="<%= articles[i].image%>"></img></td>
+              <td><button type="button" class="btn btn-danger">X</button></td>
+            </tr>
 
-          <tr class="article">
-            <td>Lorem ipsum dolor sit amet.</td>
-            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus eligendi illo laudantium hic minima
-              qui.
-              Ipsum hic, eum illo eveniet expedita deleniti similique perspiciatis, distinctio porro error perferendis
-              voluptates esse sed tempora vitae. Accusamus ea repellat, perspiciatis error quia rerum nulla quod
-              excepturi
-              consectetur. Rem laudantium accusantium laborum quasi placeat.STEOTIME</td>
-            <td><a href="www.google.com">www.google.com</a></td>
-            <td><img src="https://via.placeholder.com/50"></img></td>
-            <td><button type="button" class="btn btn-danger">X</button></td>
-          </tr>
+            <% } %>
         </table>
 
       </div>

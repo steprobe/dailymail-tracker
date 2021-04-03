@@ -60,8 +60,13 @@ const saveKeywords = async (form) => {
 
 const getState = async () => {
   const keywords = await Keyword.find({});
+  const articles = await Article.find({});
+  const metadata = await Metadata.findOne({});
+
   return {
     keywords,
+    articles,
+    metadata,
   };
 };
 
@@ -96,7 +101,8 @@ app.post('/superhans/login', (req, res) => login(req, res));
 app.post('/superhans/logout', (req, res) => logout(req, res));
 
 app.get('/admin', auth, async (req, res) => {
-  res.render('admin', await getState());
+  const state = await getState();
+  res.render('admin', state);
 });
 
 app.get('/admin/keywords', auth, async (req, res) => {

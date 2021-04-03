@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node server",
     "scss-dev": "node-sass -w views/scss/ --recursive -o public/css",
-    "scss-build": "node-sass -w views/scss/ -o public/css/ --recursive",
+    "scss-build": "node-sass views/scss/ -o public/css/ --recursive",
     "dev": " nodemon server",
     "lintejs": "find views -type f -iname '*.ejs' -exec bash -c \"ejslint '{}'\" \\;",
     "lint": "eslint .",

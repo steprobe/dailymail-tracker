@@ -4,7 +4,7 @@ const ArticleSchema = new mongoose.Schema(
   {
     headline: { type: String },
     articleText: { type: String },
-    href: { type: String, required: true },
+    href: { type: String },
     image: { type: String },
   },
   { timestamps: true },

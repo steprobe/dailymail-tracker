@@ -19,9 +19,11 @@
 
 
       <div class="container d-flex justify-content-between mt-5 mb-5">
-        <p class="lead align-self-left"><b class="mr-5">Last Sync:</b> 25/07/1984 04:05am</p>
-        <form action="/alanjohnson/sync" method="post">
-          <button type="submit" class="btn btn-warning">Sync Now</button>
+        <p class="lead align-self-left"><b class="mr-5">Last Sync:</b>
+          <%= metadata.createdAt%>
+        </p>
+        <form action="/admin/sync" method="post">
+          <button type="submit" class="btn btn-primary">Sync Now</button>
         </form>
       </div>
 

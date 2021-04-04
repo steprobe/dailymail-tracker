@@ -4,12 +4,12 @@ const auth = (req, res, next) => {
   const { token } = req.cookies;
 
   if (!token) {
-    res.render('adminLogin', { failed: false });
+    res.render('admin/adminLogin', { failed: false });
   } else {
     try {
       jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
         if (error) {
-          res.render('adminLogin', { failed: false });
+          res.render('admin/adminLogin', { failed: false });
         } else {
           req.user = decoded.user;
           next();

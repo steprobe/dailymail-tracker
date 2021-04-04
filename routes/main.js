@@ -1,11 +1,29 @@
 const express = require('express');
 const { getRankings } = require('../controllers/main');
+const {
+  formatSyncDate,
+  getTodaysWord,
+  getTodaysWordArticleCount,
+  getTodaysWordDescription,
+} = require('../viewHelpers/viewHelpers');
+const Metadata = require('../models/Metadata');
 
 const app = express.Router();
 
 app.get('/', async (req, res) => {
   const rankings = await getRankings();
-  res.render('homepage', rankings);
+  const metadata = await Metadata.findOne({});
+
+  res.render('homepage', {
+    rankings,
+    metadata,
+    helpers: {
+      formatSyncDate,
+      getTodaysWord,
+      getTodaysWordArticleCount,
+      getTodaysWordDescription,
+    },
+  });
 });
 app.get('/about', (req, res) => res.render('about'));
 

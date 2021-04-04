@@ -1,6 +1,7 @@
 const express = require('express');
 const auth = require('../middleware/auth');
 const track = require('../jobs/track');
+const { getRankings } = require('../controllers/main');
 const {
   getState,
   login,
@@ -26,6 +27,10 @@ app.get('/admin/keywords', auth, async (req, res) => {
 
 app.get('/admin/articles', auth, async (req, res) => {
   res.render('admin/adminArticles', await getState());
+});
+
+app.get('/admin/rankings', auth, async (req, res) => {
+  res.render('admin/adminRankings', await getRankings());
 });
 
 app.post('/admin/sync', auth, async (req, res) => {

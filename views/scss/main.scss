@@ -1,12 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;600&display=swap');
 
 //https://coolors.co/048a81-06d6a0-54c6eb-8a89c0-cda2ab
-$background-color: #ede0d4;
-$nav-item-text-color: #7f5539;
-$nav-item-hover-text-color: #cd9777;
-$nav-item-selected-underline: #7f5539;
-$nav-item-hover-underline: #cd9777;
+$background-color: white;
+$nav-item-selected: #305f79;
+$nav-item-hover: lighten(
+  $color: $nav-item-selected,
+  $amount: 10%,
+);
+$card-background: darken(#ffffff, 1%);
+$card-header-text: #305f79;
+$card-text: #1a2c42;
 
+// $background-color: #ede0d4;
+// $nav-item-text-color: #7f5539;
+// $nav-item-hover-text-color: #cd9777;
+// $nav-item-selected-underline: #7f5539;
+// $nav-item-hover-underline: #cd9777;
 // $almond: #ede0d4ff;
 // $desert-sand: #e6ccb2ff;
 // $tan: #ddb892ff;
@@ -38,7 +47,7 @@ body {
   margin: 0 10px;
   z-index: 1;
   position: relative;
-  color: $nav-item-text-color;
+  color: $nav-item-selected;
   text-decoration: none;
 
   &:before {
@@ -48,14 +57,14 @@ body {
     left: 0;
     width: 100%;
     height: 5px;
-    background-color: $nav-item-hover-underline;
+    background-color: $nav-item-hover;
     opacity: 0;
   }
 
   &.is-active:before {
     opacity: 1;
     bottom: 0;
-    background-color: $nav-item-selected-underline;
+    background-color: $nav-item-selected;
   }
 
   &:hover:before {
@@ -65,9 +74,9 @@ body {
 
   &:hover {
     text-decoration: none;
-    color: $nav-item-hover-text-color;
+    color: $nav-item-hover;
     &.is-active {
-      color: $nav-item-text-color;
+      color: $nav-item-selected;
     }
   }
 }
@@ -83,22 +92,48 @@ body {
   border-radius: 8px 8px 0 0;
 }
 
-.about-copy {
-  background-color: lighten($color: $background-color, $amount: 7%);
-  margin-top: 4rem;
-  padding: 4rem 10% 4rem 10%;
+.card-copy {
+  // background-color: lighten($color: $background-color, $amount: 12%);
+  background-color: $card-background;
+  padding: 2rem 10% 2rem 10%;
   border-radius: 8px;
 
-  h5 {
-    font-family: 'Dosis', sans-serif;
-    font-weight: 600;
+  hr {
+    &.short {
+      background-color: $card-header-text;
+      width: 160px;
+    }
+  }
+
+  .header {
+    font-family: sans-serif;
+    font-weight: 200;
+    color: $card-header-text;
   }
 
   p {
     line-height: 30px !important;
-    font: 18px Doris, Serif;
     text-align: left;
     margin-top: 1rem;
     font-weight: 200;
+    color: $card-text;
+
+    &.normal-copy {
+      font: 1.15rem Doris, Serif;
+    }
+
+    &.subtitle {
+      font: 1.4rem Doris, Serif;
+    }
   }
+}
+
+.word-of-the-day {
+  margin-top: 2rem;
+  font: 7rem Doris, Serif;
+  font-weight: 200;
+}
+
+.dmt-menu {
+  margin-bottom: 4rem;
 }

@@ -21,19 +21,39 @@
 
       <div class="container">
 
-        <h1>Word of the day is</h1>
-        <h3>
-          <%= JSON.stringify(rankings[0].keyword.matches[0]) %> with <%= rankings[0].articles.length %> articles
-        </h3>
+        <div class="card-copy">
+          <h3 class="header">Word of the day, <%= helpers.formatSyncDate(metadata.createdAt) %>
+          </h3>
 
-        <p>Followed by:</p>
-        <% for(i=1; i < rankings.length; i +=1) {%>
+          <hr class="short" />
 
-          <p>
-            <%= JSON.stringify(rankings[i].keyword.matches[0]) %> with <%= rankings[i].articles.length %>
-                articles
+          <div class="word-of-the-day text-center">
+            <%= helpers.getTodaysWord(rankings) %>
+          </div>
+
+          <hr class="mt-4 mb-4" />
+
+          <div class="mt-4">
+            <h4 class="header text-left">Definition</h4>
+            <p class="text-left">
+              <%= helpers.getTodaysWordDescription(rankings) %>
+            </p>
+          </div>
+
+          <p class="subtitle text-center text-muted">
+            Today, the dailymail thought this warranted <%= helpers.getTodaysWordArticleCount(rankings)%> articles
           </p>
-          <%} %>
+
+
+          <p>Followed by:</p>
+          <% for(i=1; i < rankings.length; i +=1) {%>
+
+            <p>
+              <%= JSON.stringify(rankings[i].keyword.matches[0]) %> with <%= rankings[i].articles.length %>
+                  articles
+            </p>
+            <%} %>
+        </div>
       </div>
   </body>
 

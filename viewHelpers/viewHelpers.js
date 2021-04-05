@@ -19,9 +19,9 @@ exports.formatSyncDate = (dateStr) => {
   return `${months[date.getMonth()]} ${date.getDate()}`;
 };
 
-exports.getTodaysWord = (state) => state.rankings[0].keyword.matches[0];
+exports.getTodaysWord = (state) => state.rankings[1].keyword.matches[0];
 exports.getTodaysWordArticleCount = (state) =>
-  state.rankings[0].articles.length;
+  state.rankings[1].articles.length;
 
 exports.getTodaysWordDescription = (state) =>
-  state.rankings[0].keyword.description;
+  state.rankings[1].keyword.description;

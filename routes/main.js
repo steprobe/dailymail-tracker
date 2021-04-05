@@ -14,7 +14,7 @@ app.get('/', async (req, res) => {
   const rankings = await getRankings();
   const metadata = await Metadata.findOne({});
 
-  res.render('homepage', {
+  const state = {
     rankings,
     metadata,
     helpers: {
@@ -23,7 +23,9 @@ app.get('/', async (req, res) => {
       getTodaysWordArticleCount,
       getTodaysWordDescription,
     },
-  });
+  };
+
+  res.render('homepage', { state });
 });
 app.get('/about', (req, res) => res.render('about'));
 

@@ -92,8 +92,13 @@ body {
   border-radius: 8px 8px 0 0;
 }
 
+.defn-text {
+  color: $card-text;
+  text-align: left;
+  font: 1.15rem Doris, Serif;
+}
+
 .card-copy {
-  // background-color: lighten($color: $background-color, $amount: 12%);
   background-color: $card-background;
   padding: 2rem 10% 2rem 10%;
   border-radius: 8px;

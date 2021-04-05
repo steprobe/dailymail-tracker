@@ -42,23 +42,45 @@
                     <%- state.helpers.getTodaysWordDescription(state) %>
                   </div>
 
-                  <p class="subtitle text-center text-muted mt-2">
-                    Today, the dailymail thought this warranted <%= state.helpers.getTodaysWordArticleCount(state)%>
-                      articles, such as:
-                  </p>
+                  <hr class="mt-4 mb-4" />
 
                   <div class="container">
-                    <% 
-                      const articles = state.helpers.getDisplayArticles(state);
-                    for(let i = 0; i < articles.length; i += 1) {%>
-                      <div class="row d-flex align-items-center">
-                        <div class="col-8"><p><%= articles[i].headline%></p></div>
-                        <div class="col-4"><img class="article-image p-2" src="<%= articles[i].image%>"></img></div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <p class="subtitle text-center text-muted mt-2">
+                          Today, this warranted <%= state.helpers.getTodaysWordArticleCount(state)%>
+                            articles, such as:
+                        </p>
+
+                        <div class="container">
+                          <% 
+                            const articles = state.helpers.getDisplayArticles(state);
+                            for(let i = 0; i < articles.length; i += 1) {%>
+                            <div class="row d-flex align-items-center m-4">
+                              <div class="col-md-8"><p><%= articles[i].headline%></p></div>
+                              <div class="col-md-4"><img class=" home-article-image p-2" src="<%= articles[i].image%>"></img></div>
+                            </div>
+                            
+                            
+                          <%}%>
+                        </div>
                       </div>
-                      
-                      
-                    <%}%>
-                  </div>
+                      <div class="col-md-4">
+                        
+                        <p class="subtitle text-center text-muted mt-2">
+                          And the runners up:
+                          <ol>
+                          <% 
+                            const runnersUp = state.helpers.getTodaysWordRunnersUp(state)
+                            for(let i = 0; i < runnersUp.length; i += 1) {
+                          %>
+                                <li class="text-left"><i><%= runnersUp[i].title%></i> with <%= runnersUp[i].articleCount %> articles</li>
+                          <% } %>
+                        </ol>
+                        </p>
+
+                      </div>
+                </div>
                 </div>
           <% } %>
         </div>

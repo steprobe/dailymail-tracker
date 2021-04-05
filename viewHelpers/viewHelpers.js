@@ -36,3 +36,11 @@ exports.getDisplayArticles = (state) => {
   const articleCount = Math.min(3, state.rankings[0].articles.length);
   return state.rankings[0].articles.slice(0, articleCount);
 };
+
+exports.getTodaysWordRunnersUp = (state) => {
+  const runnerUpCount = Math.min(3, state.rankings.length - 1);
+  return state.rankings.slice(1, runnerUpCount + 1).map((it) => ({
+    title: it.keyword.matches[0],
+    articleCount: it.articles.length,
+  }));
+};

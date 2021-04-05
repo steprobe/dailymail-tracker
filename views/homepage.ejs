@@ -22,10 +22,14 @@
       <div class="container">
 
         <div class="card-copy">
-          <h3 class="header">Word of the day, <%= state.helpers.formatSyncDate(state.metadata.createdAt) %>
+          <h3 class="header">Word of the day, <%= state.helpers.formatSyncDate(state) %>
           </h3>
 
           <hr class="short" />
+
+            <% if(!state.helpers.hasRankings(state)) {%>
+            <p class="text-center mt-4"> No word of the day yet, check back later! </p>
+            <% } else {%>
 
           <div class="word-of-the-day text-center">
             <%= state.helpers.getTodaysWord(state) %>
@@ -63,6 +67,9 @@
                   articles
             </p>
             <%} %>
+
+
+            <% }%>
         </div>
       </div>
   </body>

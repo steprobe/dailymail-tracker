@@ -27,7 +27,7 @@ app.get('/', async (req, res) => {
     },
   };
 
-  res.render('homepage', { state });
+  res.render('home', { state });
 });
 app.get('/about', (req, res) => res.render('about'));
 

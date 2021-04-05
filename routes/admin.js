@@ -39,7 +39,7 @@ app.get('/admin/rankings', auth, async (req, res) => {
 
 app.post('/admin/sync', auth, async (req, res) => {
   await track();
-  res.render('admin/admin', await getState());
+  res.redirect('/admin');
 });
 app.post('/admin/saveKeywords', auth, async (req, res) => {
   try {

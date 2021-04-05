@@ -28,48 +28,39 @@
           <hr class="short" />
 
             <% if(!state.helpers.hasRankings(state)) {%>
-            <p class="text-center mt-4"> No word of the day yet, check back later! </p>
+              <p class="text-center mt-4"> No word of the day yet, check back later! </p>
             <% } else {%>
 
-          <div class="word-of-the-day text-center">
-            <%= state.helpers.getTodaysWord(state) %>
-          </div>
+                  <div class="word-of-the-day text-center">
+                    <%= state.helpers.getTodaysWord(state) %>
+                  </div>
 
-          <hr class="mt-4 mb-4" />
+                  <hr class="mt-4 mb-4" />
 
-          <div class="container defn-text mb-5">
-            <h4 class="header text-left">Definition</h4>
-            <%- state.helpers.getTodaysWordDescription(state) %>
-          </div>
+                  <div class="container defn-text mb-5">
+                    <h4 class="header text-left">Definition</h4>
+                    <%- state.helpers.getTodaysWordDescription(state) %>
+                  </div>
 
-          <p class="subtitle text-center text-muted mt-2">
-            Today, the dailymail thought this warranted <%= state.helpers.getTodaysWordArticleCount(state)%>
-              articles, such as
-          </p>
+                  <p class="subtitle text-center text-muted mt-2">
+                    Today, the dailymail thought this warranted <%= state.helpers.getTodaysWordArticleCount(state)%>
+                      articles, such as:
+                  </p>
 
-          <p>
-            <%= JSON.stringify(state.rankings)%>
-          </p>
-          <table>
-            <% for(i=1; i < state.rankings.length; i +=1) {%>
-              <tr>Row</tr>
-              <% } %>
-
-          </table>
-
-
-          <p>Followed by: <%= state.rankings.length %>
-          </p>
-          <% for(i=1; i < state.rankings.length; i +=1) {%>
-
-            <p>
-              <%= JSON.stringify(state.rankings[i].keyword.matches[0]) %> with <%= state.rankings[i].articles.length %>
-                  articles
-            </p>
-            <%} %>
-
-
-            <% }%>
+                  <div class="container">
+                    <% 
+                      const articles = state.helpers.getDisplayArticles(state);
+                    for(let i = 0; i < articles.length; i += 1) {%>
+                      <div class="row d-flex align-items-center">
+                        <div class="col-8"><p><%= articles[i].headline%></p></div>
+                        <div class="col-4"><img class="article-image p-2" src="<%= articles[i].image%>"></img></div>
+                      </div>
+                      
+                      
+                    <%}%>
+                  </div>
+                </div>
+          <% } %>
         </div>
       </div>
   </body>

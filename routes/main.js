@@ -5,6 +5,7 @@ const {
   getTodaysWord,
   getTodaysWordArticleCount,
   getTodaysWordDescription,
+  getDisplayArticles,
   hasRankings,
 } = require('../viewHelpers/viewHelpers');
 const Metadata = require('../models/Metadata');
@@ -23,6 +24,7 @@ app.get('/', async (req, res) => {
       getTodaysWord,
       getTodaysWordArticleCount,
       getTodaysWordDescription,
+      getDisplayArticles,
       hasRankings,
     },
   };

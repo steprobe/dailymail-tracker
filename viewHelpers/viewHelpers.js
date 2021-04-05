@@ -24,10 +24,15 @@ const hasRankings = (state) =>
 exports.hasRankings = hasRankings;
 
 exports.getTodaysWord = (state) =>
-  hasRankings(state) ? state.rankings[1].keyword.matches[0] : 'no word';
+  hasRankings(state) ? state.rankings[0].keyword.matches[0] : 'no word';
 
 exports.getTodaysWordArticleCount = (state) =>
-  hasRankings(state) ? state.rankings[1].articles.length : 0;
+  hasRankings(state) ? state.rankings[0].articles.length : 0;
 
 exports.getTodaysWordDescription = (state) =>
-  hasRankings(state) ? state.rankings[1].keyword.description : 'no description';
+  hasRankings(state) ? state.rankings[0].keyword.description : 'no description';
+
+exports.getDisplayArticles = (state) => {
+  const articleCount = Math.min(3, state.rankings[0].articles.length);
+  return state.rankings[0].articles.slice(0, articleCount);
+};

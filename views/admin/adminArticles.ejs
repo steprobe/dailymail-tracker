@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
+
+    <title>Admin</title>
+  </head>
+
+  <body>
+    <%- include('../partials/adminHeader') %>
+
+      <div class="container mt-5">
+
+        <table class="table table-striped" id="article-table">
+
+          <tr>
+            <td colspan="5">
+              <input type="text" id="article-table-filter" placeholder="Filter Articles" class="form-control"></input>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Headline</th>
+            <th>Article</th>
+            <th>Link</th>
+            <th>Image</th>
+            <th>Matched Keyword</th>
+            <th></th>
+          </tr>
+
+          <% for(var i=0; i<articles.length; i++) {%>
+
+
+            <tr class="article">
+              <td>
+                <%= articles[i].headline%>
+              </td>
+              <td>
+                <%= articles[i].articleText%>
+              </td>
+              <td><a target="_blank" href="http://dailymail.co.uk<%= articles[i].href%>">
+                  <%= articles[i].href%>
+                </a></td>
+              <td><img class="article-image" src="<%= articles[i].image%>"></img></td>
+              <td>
+                <%= articles[i].matched.map(it=> '[' + it.matches + ']') %>
+              </td>
+              <td><button type="button" class="btn btn-danger">X</button></td>
+            </tr>
+
+            <% } %>
+        </table>
+
+      </div>
+
+      <%- include('../partials/logout') %>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+        <script>
+          $(document).ready(function () {
+            $("#article-table-filter").on("keyup", function () {
+              var value = $(this).val().toLowerCase();
+              $("#article-table .article").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+              });
+            });
+          });
+
+        </script>
+  </body>
+
+</html>

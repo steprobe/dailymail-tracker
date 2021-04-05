@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;600&display=swap");
+* {
+  box-sizing: border-box; }
+
+body {
+  text-align: center;
+  background-color: white;
+  font-family: 'Doris', sans-serif; }
+
+.nav {
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+  max-width: 100%; }
+
+.nav-item {
+  font-size: 20px;
+  color: white;
+  padding: 20px;
+  text-decoration: none;
+  margin: 0 10px;
+  z-index: 1;
+  position: relative;
+  color: #305f79;
+  text-decoration: none; }
+  .nav-item:before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #3e7c9e;
+    opacity: 0; }
+  .nav-item.is-active:before {
+    opacity: 1;
+    bottom: 0;
+    background-color: #305f79; }
+  .nav-item:hover:before {
+    opacity: 1;
+    bottom: 0; }
+  .nav-item:hover {
+    text-decoration: none;
+    color: #3e7c9e; }
+    .nav-item:hover.is-active {
+      color: #305f79; }
+
+.nav-indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  transition: 3.4s;
+  height: 5px;
+  z-index: 1;
+  border-radius: 8px 8px 0 0; }
+
+.defn-text {
+  color: #1a2c42;
+  text-align: left;
+  font: 1.15rem Doris, Serif; }
+
+.card-copy {
+  background-color: #fcfcfc;
+  padding: 2rem 10% 2rem 10%;
+  border-radius: 8px; }
+  .card-copy hr.short {
+    background-color: #305f79;
+    width: 160px; }
+  .card-copy .header {
+    font-family: sans-serif;
+    font-weight: 200;
+    color: #305f79; }
+  .card-copy p {
+    line-height: 30px !important;
+    text-align: left;
+    margin-top: 1rem;
+    font-weight: 200;
+    color: #1a2c42; }
+    .card-copy p.normal-copy {
+      font: 1.15rem Doris, Serif; }
+    .card-copy p.subtitle {
+      font: 1.4rem Doris, Serif; }
+
+.word-of-the-day {
+  margin-top: 2rem;
+  font: 7rem Doris, Serif;
+  font-weight: 200; }
+
+.dmt-menu {
+  margin-bottom: 4rem; }

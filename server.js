@@ -1,23 +1,25 @@
 require('dotenv').config();
 const express = require('express');
 const listEndpoints = require('express-list-endpoints');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const connectToDb = require('./config/db');
-const track = require('./jobs/track');
 
 const app = express();
 
 connectToDb();
 
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  '/bootstrap',
+  express.static(`${__dirname}/node_modules/bootstrap/dist`),
+);
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-  res.render('homepage');
-});
-
-app.get('/track', async (req, res) => {
-  await track();
-  res.send('there we go');
-});
+app.use('/', require('./routes/main'));
+app.use('/', require('./routes/admin'));
 
 console.log(listEndpoints(app));
 

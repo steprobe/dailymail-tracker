@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node server",
-    "dev": "nodemon server",
+    "scss-dev": "node-sass -w views/scss/ --recursive -o public/css",
+    "scss-build": "node-sass views/scss/ -o public/css/ --recursive",
+    "dev": " nodemon server",
+    "lintejs": "find views -type f -iname '*.ejs' -exec bash -c \"ejslint '{}'\" \\;",
     "lint": "eslint .",
     "lintf": "eslint --fix .",
     "test": "NODE_ENV=test mocha --recursive test --require @babel/register --exit --timeout 5000"
@@ -14,16 +17,22 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.6.0",
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
     "cheerio": "^1.0.0-rc.5",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-list-endpoints": "^5.0.0",
     "got": "^11.8.2",
     "jsdom": "^16.5.1",
-    "mongoose": "^5.12.1"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.1",
+    "node-sass": "^5.0.0",
+    "sass": "^1.32.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.10",
@@ -36,6 +45,7 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.1",
+    "ejs-lint": "^1.1.0",
     "mocha": "^8.3.2",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1"

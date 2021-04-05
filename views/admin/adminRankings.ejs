@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
+
+    <title>Admin</title>
+  </head>
+
+  <body>
+    <%- include('../partials/adminHeader') %>
+
+      <div class="container mt-5">
+
+        <table class="table table-striped" id="article-table">
+          <tr>
+            <th>Keyword</th>
+            <th>Description</th>
+            <th>Articles</th>
+          </tr>
+
+          <% for(var i=0; i<rankings.length; i++) {%>
+
+            <tr>
+              <td>
+
+                <%= rankings[i].keyword.matches %>
+              </td>
+              <td>
+                <%= rankings[i].keyword.description %>
+              </td>
+              <td>
+                <%= rankings[i].articles.length %>
+              </td>
+
+              <% } %>
+        </table>
+      </div>
+
+      <%- include('../partials/logout') %>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+  </body>
+
+</html>

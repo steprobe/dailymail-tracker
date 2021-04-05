@@ -29,7 +29,7 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Build Docker Image
-        run: docker build -t registry.heroku.com/dailymail-tracker-staging/web -t registry.heroku.com/dailymail-tracker-prod/web .
+        run: docker build -t registry.heroku.com/dailymail-tracker-staging/web -t registry.heroku.com/dailymail-tracker-production/web .
 
       - name: Push Image to Heroku (staging)
         if: github.ref == 'refs/heads/development'
@@ -41,7 +41,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:login && docker push registry.heroku.com/dailymail-tracker-prod/web
+        run: heroku container:login && docker push registry.heroku.com/dailymail-tracker-production/web
 
   deploy:
     runs-on: ubuntu-latest
@@ -60,4 +60,4 @@ jobs:
         if: github.ref == 'refs/heads/main'
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:release web -a dailymail-tracker-prod
+        run: heroku container:release web -a dailymail-tracker-production

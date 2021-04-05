@@ -35,20 +35,20 @@
               class="form-control mt-1"></textarea>
           </div>
 
-          <% for(var i=0; i<keywords.length; i++) {%>
-            <div class="form-group" id="<%=keywords[i]._id%>">
+          <% for(var i=0; i<state.keywords.length; i++) {%>
+            <div class="form-group" id="<%=state.keywords[i]._id%>">
               <div class="d-flex mt-1">
                 <input type="text" name="newKeywordName" placeholder="Keyword" class="form-control" required="required"
-                  value="<%= keywords[i].matches%>"></input>
+                  value="<%= state.keywords[i].matches%>"></input>
                 <button type="button" class="btn btn-danger ml-1"
-                  onclick="removeElement('<%= keywords[i]._id%>')">X</button>
+                  onclick="removeElement('<%= state.keywords[i]._id%>')">X</button>
               </div>
-              <select class="form-control mt-1" name="newKeywordType" selected="<%= keywords[i].type%>">
+              <select class="form-control mt-1" name="newKeywordType" selected="<%= state.keywords[i].type%>">
                 <option>Dictionary</option>
                 <option>Wikipedia</option>
               </select>
               <textarea required="required" type="text" name="newKeywordDescription" placeholder="Description"
-                class="form-control mt-1"><%= keywords[i].description%></textarea>
+                class="form-control mt-1"><%= state.keywords[i].description%></textarea>
             </div>
 
             <% } %>

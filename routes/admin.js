@@ -18,19 +18,23 @@ app.post('/superhans/login', (req, res) => login(req, res));
 app.post('/superhans/logout', (req, res) => logout(req, res));
 
 app.get('/admin', auth, async (req, res) => {
-  res.render('admin/admin', await getState());
+  const state = await getState();
+  res.render('admin/admin', { state });
 });
 
 app.get('/admin/keywords', auth, async (req, res) => {
-  res.render('admin/adminKeywords', await getState());
+  const state = await getState();
+  res.render('admin/adminKeywords', { state });
 });
 
 app.get('/admin/articles', auth, async (req, res) => {
-  res.render('admin/adminArticles', await getState());
+  const state = await getState();
+  res.render('admin/adminArticles', { state });
 });
 
 app.get('/admin/rankings', auth, async (req, res) => {
-  res.render('admin/adminRankings', await getRankings());
+  const rankings = await getRankings();
+  res.render('admin/adminRankings', { state: { rankings } });
 });
 
 app.post('/admin/sync', auth, async (req, res) => {

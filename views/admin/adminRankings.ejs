@@ -25,18 +25,18 @@
             <th>Articles</th>
           </tr>
 
-          <% for(var i=0; i<rankings.length; i++) {%>
+          <% for(var i=0; i<state.rankings.length; i++) {%>
 
             <tr>
               <td>
 
-                <%= rankings[i].keyword.matches %>
+                <%= state.rankings[i].keyword.matches %>
               </td>
               <td>
-                <%= rankings[i].keyword.description %>
+                <%= state.rankings[i].keyword.description %>
               </td>
               <td>
-                <%= rankings[i].articles.length %>
+                <%= state.rankings[i].articles.length %>
               </td>
 
               <% } %>

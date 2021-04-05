@@ -28,18 +28,18 @@
           <hr class="short" />
 
           <div class="word-of-the-day text-center">
-            <%= state.helpers.getTodaysWord(state.rankings) %>
+            <%= state.helpers.getTodaysWord(state) %>
           </div>
 
           <hr class="mt-4 mb-4" />
 
           <div class="container defn-text mb-5">
             <h4 class="header text-left">Definition</h4>
-            <%- state.helpers.getTodaysWordDescription(state.rankings) %>
+            <%- state.helpers.getTodaysWordDescription(state) %>
           </div>
 
           <p class="subtitle text-center text-muted mt-2">
-            Today, the dailymail thought this warranted <%= state.helpers.getTodaysWordArticleCount(state.rankings)%>
+            Today, the dailymail thought this warranted <%= state.helpers.getTodaysWordArticleCount(state)%>
               articles, such as
           </p>
 

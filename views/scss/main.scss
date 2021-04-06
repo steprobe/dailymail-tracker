@@ -155,10 +155,6 @@ body {
   font-weight: 300;
 }
 
-.dmt-menu {
-  margin-bottom: 4rem;
-}
-
 .home-article-image {
   width: 100%;
   height: 100%;
@@ -172,14 +168,20 @@ body {
   display: none;
 }
 
-.debug1 {
-  background-color: green;
+.social {
+  margin: 1rem 1rem 1rem 1rem;
+  font-size: 1.6em !important;
+  text-decoration: none !important;
 }
 
-.debug2 {
-  background-color: blue;
+.fa-facebook {
+  color: #3b5998;
 }
 
-.debug3 {
-  background-color: red;
+.fa-twitter {
+  color: #1da1f2;
+}
+
+.fa-instagram {
+  color: #e1306c;
 }

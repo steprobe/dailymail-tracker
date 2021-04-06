@@ -12,97 +12,104 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" type="text/css" />
 
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Dailymail word of the day</title>
   </head>
 
   <body id="body d-flex justify-content-center">
-    <%- include('partials/menu', { active: 'home' }) %>
+    <div>
+      <%- include('partials/menu', { active: 'home' }) %>
+    </div>
 
+    <div class="m-2">
+      <%- include('partials/socials') %>
+    </div>
 
-      <div class="container p-0">
+    <div class="container p-0">
 
-        <div class="card-copy">
-          <h3 class="header">Dailymail word of the day
-            <h3 class="header">
-              <%= state.helpers.formatSyncDate(state) %>
-            </h3>
+      <div class="card-copy">
+        <h3 class="header">Dailymail word of the day
+          <h3 class="header">
+            <%= state.helpers.formatSyncDate(state) %>
           </h3>
+        </h3>
 
-          <hr class="short" />
+        <hr class="short" />
 
-          <% if(!state.helpers.hasRankings(state)) {%>
-            <p class="text-center"> No word of the day yet, check back later! </p>
-            <% } else {%>
+        <% if(!state.helpers.hasRankings(state)) {%>
+          <p class="text-center"> No word of the day yet, check back later! </p>
+          <% } else {%>
 
-              <div class="word-of-the-day text-center">
-                <%= state.helpers.getTodaysWord(state) %>
-              </div>
+            <div class="word-of-the-day text-center">
+              <%= state.helpers.getTodaysWord(state) %>
+            </div>
 
-              <hr />
+            <hr />
 
-              <div class="container defn-text p-0">
-                <div class="row">
-                  <div class="col">
-                    <h4 class="header text-left">Definition</h4>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <%- state.helpers.getTodaysWordDescription(state) %>
-                  </div>
+            <div class="container defn-text p-0">
+              <div class="row">
+                <div class="col">
+                  <h4 class="header text-left">Definition</h4>
                 </div>
               </div>
+              <div class="row">
+                <div class="col">
+                  <%- state.helpers.getTodaysWordDescription(state) %>
+                </div>
+              </div>
+            </div>
 
-              <hr />
+            <hr />
 
-              <div class="container no-gutters p-0">
-                <div class="row">
-                  <div class="col-md-8">
-                    <p class="subtitle text-center text-muted">
-                      Today, this warranted <%= state.helpers.getTodaysWordArticleCount(state)%>
-                        articles, such as:
-                    </p>
+            <div class="container no-gutters p-0">
+              <div class="row">
+                <div class="col-md-8">
+                  <p class="subtitle text-center text-muted">
+                    Today, this warranted <%= state.helpers.getTodaysWordArticleCount(state)%>
+                      articles, such as:
+                  </p>
 
-                    <div class="container last-item-gone p-0">
-                      <% const articles=state.helpers.getDisplayArticles(state); %>
-                        <% for(let i=0; i < articles.length; i +=1) {%>
-                          <div class="row d-flex align-items-center">
-                            <div class="col-md-8">
-                              <p>
-                                <%= articles[i].headline%>
-                              </p>
-                            </div>
-                            <div class="col-md-4"><img class=" home-article-image p-2"
-                                src="<%= articles[i].image%>"></img></div>
+                  <div class="container last-item-gone p-0">
+                    <% const articles=state.helpers.getDisplayArticles(state); %>
+                      <% for(let i=0; i < articles.length; i +=1) {%>
+                        <div class="row d-flex align-items-center">
+                          <div class="col-md-8">
+                            <p>
+                              <%= articles[i].headline%>
+                            </p>
                           </div>
+                          <div class="col-md-4"><img class=" home-article-image p-2"
+                              src="<%= articles[i].image%>"></img></div>
+                        </div>
 
-                          <hr class="article-separator" />
+                        <hr class="article-separator" />
 
-                          <%}%>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-
-                    <hr class="d-md-none m-4" />
-
-                    <p class="subtitle text-center text-muted mt-2">
-                      And the runners up
-                    <ol>
-                      <% const runnersUp=state.helpers.getTodaysWordRunnersUp(state); %>
-                        <% for(let i=0; i < runnersUp.length;i +=1) { %>
-                          <li class="text-left"><i>
-                              <%= runnersUp[i].title%>
-                            </i> with <%= runnersUp[i].articleCount %> articles</li>
-                          <% } %>
-                    </ol>
-                    </p>
-
+                        <%}%>
                   </div>
                 </div>
+                <div class="col-md-4">
+
+                  <hr class="d-md-none m-4" />
+
+                  <p class="subtitle text-center text-muted mt-2">
+                    And the runners up
+                  <ol>
+                    <% const runnersUp=state.helpers.getTodaysWordRunnersUp(state); %>
+                      <% for(let i=0; i < runnersUp.length;i +=1) { %>
+                        <li class="text-left"><i>
+                            <%= runnersUp[i].title%>
+                          </i> with <%= runnersUp[i].articleCount %> articles</li>
+                        <% } %>
+                  </ol>
+                  </p>
+
+                </div>
               </div>
-              <% } %>
-        </div>
+            </div>
+            <% } %>
       </div>
+    </div>
   </body>
 
 </html>

@@ -11,32 +11,105 @@
     <script language="javascript" src="/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" type="text/css" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <title>Dailymail Favourite Words</title>
   </head>
 
   <body id="body d-flex justify-content-center m-4">
-    <%- include('partials/menu', {active: "about" }) %>
 
-      <div class="container col-xs-4 col-md-8 col-lg-6 
+    <div>
+      <%- include('partials/menu', { active: 'about' }) %>
+    </div>
+
+    <div class="m-2">
+      <%- include('partials/socials') %>
+    </div>
+
+    <div class="container col-xs-4 col-md-8 col-lg-6 
       bg-transparent">
 
-        <div class="card-copy">
-          <h4 class="header">Why do we need a dailymail word of the day?</h5>
-            <p class="normal-copy">
-              Well, we don't really. But we thought it would be fun to track the recurring misogyny, racism, and
-              z-listers
-              they publish everyday with the express goal of getting you to click more ads. Their preferred way to do
-              this is by instilling a fear of foreigners or the "radical left", but if that fails, they fall back on
-              enticing you in via the eyepopping displays of the ample assets of a woman who flaunted them
-              right in front of a telescopic lens, 2km away in a bush.
-            </p>
-            <br /><br />
-            <p class="normal-copy">We are currently tracking words such as <%= state.helpers.getTrackedWords(state)%>.
-                If you think we are missing some, get in touch!
-            </p>
-        </div>
+      <div class="card-copy">
+        <h4 class="header">Why do we need a dailymail word of the day?</h5>
+          <p class="normal-copy">
+            Well, we don't really. But we thought it would be fun to track the recurring misogyny, racism, and
+            z-listers
+            they publish everyday with the express goal of getting you to click more ads. Their preferred way to do
+            this is by instilling a fear of foreigners or the "radical left", but if that fails, they fall back on
+            enticing you in via the eyepopping displays of the ample assets of a woman who flaunted them
+            right in front of a telescopic lens, 2km away in a bush.
+          </p>
+          <br />
+          <p class="normal-copy">We are currently tracking words such as <%= state.helpers.getTrackedWords(state)%>.
+              If you think we are missing some, get in touch!
+          </p>
+
+          <br />
+
+          <div>
+            <form id="contact-form" action="https://formspree.io/f/xayayjan" method="POST">
+
+              <div class="form-group">
+                <input class="form-control" type="text" id="name" name="firstname" placeholder="Name" />
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" id="email" name="lastname" placeholder="email" />
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" id="subject" name="subject" placeholder="Message" rows="10"></textarea>
+              </div>
+              <input id="contact-send-button" type="submit" value="Submit" class="btn btn-primary btn-block" />
+              <p id="contact-status"></p>
+            </form>
+          </div>
       </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', function () {
+        var form = document.getElementById('contact-form');
+        var button = document.getElementById('contact-send-button');
+        var status = document.getElementById('contact-status');
+
+        function success() {
+          form.reset();
+          button.style = 'display: none ';
+          status.innerHTML = 'Thanks! Your message has been sent';
+        }
+
+        function error() {
+          status.innerHTML = 'Oops! There was a problem.';
+        }
+
+        form.addEventListener('submit', function (ev) {
+          ev.preventDefault();
+          var data = new FormData(form);
+          ajax(form.method, form.action, data, success, error);
+        });
+      });
+
+      // helper function for sending an AJAX request
+      function ajax(method, url, data, success, error) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.setRequestHeader('Accept', 'application/json');
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState !== XMLHttpRequest.DONE) return;
+          if (xhr.status === 200) {
+            success(xhr.response, xhr.responseType);
+          } else {
+            error(xhr.status, xhr.response, xhr.responseType);
+          }
+        };
+        xhr.send(data);
+      }
+
+    </script>
   </body>
 
 </html>

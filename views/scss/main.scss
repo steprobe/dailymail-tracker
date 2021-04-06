@@ -149,6 +149,10 @@ body {
   height: 100%;
 }
 
-.debug {
-  background-color: green;
+.article-separator {
+  width: 40%;
+}
+
+.last-item-gone hr:last-of-type {
+  display: none;
 }

@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;600&display=swap');
+@import '../../node_modules/bootstrap/scss/functions.scss';
+@import '../../node_modules/bootstrap/scss/_variables.scss';
+@import '../../node_modules/bootstrap/scss/mixins';
 
 //https://coolors.co/048a81-06d6a0-54c6eb-8a89c0-cda2ab
 $background-color: white;
@@ -100,8 +103,20 @@ body {
 
 .card-copy {
   background-color: $card-background;
-  padding: 2rem 10% 2rem 10%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  // padding: 2rem 10% 2rem 10%;
   border-radius: 8px;
+
+  @include media-breakpoint-up(md) {
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
 
   hr {
     &.short {
@@ -112,7 +127,7 @@ body {
 
   .header {
     font-family: sans-serif;
-    font-weight: 200;
+    font-weight: 300;
     color: $card-header-text;
   }
 
@@ -120,7 +135,7 @@ body {
     line-height: 30px !important;
     text-align: left;
     margin-top: 1rem;
-    font-weight: 200;
+    font-weight: 300;
     color: $card-text;
 
     &.normal-copy {
@@ -128,7 +143,8 @@ body {
     }
 
     &.subtitle {
-      font: 1.4rem Doris, Serif;
+      font: 1.4rem Doris, Sans-Serif;
+      font-weight: 300;
     }
   }
 }
@@ -136,9 +152,36 @@ body {
 .word-of-the-day {
   margin-top: 2rem;
   font: 7rem Doris, Serif;
-  font-weight: 200;
+  font-weight: 300;
 }
 
-.dmt-menu {
-  margin-bottom: 4rem;
+.home-article-image {
+  width: 100%;
+  height: 100%;
+}
+
+.article-separator {
+  width: 40%;
+}
+
+.last-item-gone hr:last-of-type {
+  display: none;
+}
+
+.social {
+  margin: 1rem 1rem 1rem 1rem;
+  font-size: 1.6em !important;
+  text-decoration: none !important;
+}
+
+.fa-facebook {
+  color: #3b5998;
+}
+
+.fa-twitter {
+  color: #1da1f2;
+}
+
+.fa-instagram {
+  color: #e1306c;
 }

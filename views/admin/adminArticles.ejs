@@ -35,22 +35,22 @@
             <th></th>
           </tr>
 
-          <% for(var i=0; i<articles.length; i++) {%>
+          <% for(var i=0; i<state.articles.length; i++) {%>
 
 
             <tr class="article">
               <td>
-                <%= articles[i].headline%>
+                <%= state.articles[i].headline%>
               </td>
               <td>
-                <%= articles[i].articleText%>
+                <%= state.articles[i].articleText%>
               </td>
-              <td><a target="_blank" href="http://dailymail.co.uk<%= articles[i].href%>">
-                  <%= articles[i].href%>
+              <td><a target="_blank" href="http://dailymail.co.uk<%= state.articles[i].href%>">
+                  <%= state.articles[i].href%>
                 </a></td>
-              <td><img class="article-image" src="<%= articles[i].image%>"></img></td>
+              <td><img class="article-image" src="<%= state.articles[i].image%>"></img></td>
               <td>
-                <%= articles[i].matched.map(it=> '[' + it.matches + ']') %>
+                <%= state.articles[i].matched.map(it=> '[' + it.matches + ']') %>
               </td>
               <td><button type="button" class="btn btn-danger">X</button></td>
             </tr>

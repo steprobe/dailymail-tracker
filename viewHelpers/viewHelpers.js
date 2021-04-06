@@ -1,4 +1,4 @@
-exports.formatSyncDate = (dateStr) => {
+exports.formatSyncDate = (state) => {
   const months = [
     'January',
     'February',
@@ -14,14 +14,41 @@ exports.formatSyncDate = (dateStr) => {
     'December',
   ];
 
-  const date = new Date(dateStr);
-
+  const date = state.metaData ? new Date(state.metaData.createdAt) : new Date();
   return `${months[date.getMonth()]} ${date.getDate()}`;
 };
 
-exports.getTodaysWord = (state) => state.rankings[1].keyword.matches[0];
+const hasRankings = (state) =>
+  state.rankings != null && state.rankings.length > 0;
+
+exports.hasRankings = hasRankings;
+
+exports.getTodaysWord = (state) =>
+  hasRankings(state) ? state.rankings[0].keyword.matches[0] : 'no word';
+
 exports.getTodaysWordArticleCount = (state) =>
-  state.rankings[1].articles.length;
+  hasRankings(state) ? state.rankings[0].articles.length : 0;
 
 exports.getTodaysWordDescription = (state) =>
-  state.rankings[1].keyword.description;
+  hasRankings(state) ? state.rankings[0].keyword.description : 'no description';
+
+exports.getDisplayArticles = (state) => {
+  const articleCount = Math.min(3, state.rankings[0].articles.length);
+  return state.rankings[0].articles.slice(0, articleCount);
+};
+
+exports.getTodaysWordRunnersUp = (state) => {
+  const runnerUpCount = Math.min(3, state.rankings.length - 1);
+  return state.rankings.slice(1, runnerUpCount + 1).map((it) => ({
+    title: it.keyword.matches[0],
+    articleCount: it.articles.length,
+  }));
+};
+
+exports.getTrackedWords = (state) => {
+  const keywords = state.keywords.map((it) => it.matches[0]);
+
+  return `${keywords.slice(0, keywords.length - 1).join(', ')} and ${
+    keywords[keywords.length - 1]
+  }`;
+};

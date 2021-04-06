@@ -62,30 +62,61 @@ body {
 
 .card-copy {
   background-color: #fcfcfc;
-  padding: 2rem 10% 2rem 10%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   border-radius: 8px; }
+  @media (min-width: 768px) {
+    .card-copy {
+      padding-left: 12%;
+      padding-right: 12%; } }
+  @media (max-width: 991.98px) {
+    .card-copy {
+      padding-left: 4%;
+      padding-right: 4%; } }
   .card-copy hr.short {
     background-color: #305f79;
     width: 160px; }
   .card-copy .header {
     font-family: sans-serif;
-    font-weight: 200;
+    font-weight: 300;
     color: #305f79; }
   .card-copy p {
     line-height: 30px !important;
     text-align: left;
     margin-top: 1rem;
-    font-weight: 200;
+    font-weight: 300;
     color: #1a2c42; }
     .card-copy p.normal-copy {
       font: 1.15rem Doris, Serif; }
     .card-copy p.subtitle {
-      font: 1.4rem Doris, Serif; }
+      font: 1.4rem Doris, Sans-Serif;
+      font-weight: 300; }
 
 .word-of-the-day {
   margin-top: 2rem;
   font: 7rem Doris, Serif;
-  font-weight: 200; }
+  font-weight: 300; }
 
-.dmt-menu {
-  margin-bottom: 4rem; }
+.home-article-image {
+  width: 100%;
+  height: 100%; }
+
+.article-separator {
+  width: 40%; }
+
+.last-item-gone hr:last-of-type {
+  display: none; }
+
+.social {
+  margin: 1rem 1rem 1rem 1rem;
+  font-size: 1.6em !important;
+  text-decoration: none !important; }
+
+.fa-facebook {
+  color: #3b5998; }
+
+.fa-twitter {
+  color: #1da1f2; }
+
+.fa-instagram {
+  color: #e1306c; }

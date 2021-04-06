@@ -17,7 +17,5 @@ exports.getRankings = async () => {
     (one, other) => other.articles.length - one.articles.length,
   );
 
-  // sortedRankings = sortedRankings.slice(0, 1);
-
   return sortedRankings;
 };

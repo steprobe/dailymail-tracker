@@ -27,11 +27,7 @@
             <label>New Keyword: (comma separate values to have multiple matches per keyword eg. sizzle,
               sizzling)</label>
             <input type="text" name="newKeywordName" placeholder="Keyword" class="form-control mt-1"></input>
-            <select class="form-control mt-1" name="newKeywordType">
-              <option>Dictionary</option>
-              <option>Wikipedia</option>
-            </select>
-            <textarea type="text" name="newKeywordDescription" placeholder="Description"
+            <textarea type="text" name="newKeywordDescription" placeholder="Description" rows="4"
               class="form-control mt-1"></textarea>
           </div>
 
@@ -43,11 +39,7 @@
                 <button type="button" class="btn btn-danger ml-1"
                   onclick="removeElement('<%= state.keywords[i]._id%>')">X</button>
               </div>
-              <select class="form-control mt-1" name="newKeywordType" selected="<%= state.keywords[i].type%>">
-                <option>Dictionary</option>
-                <option>Wikipedia</option>
-              </select>
-              <textarea required="required" type="text" name="newKeywordDescription" placeholder="Description"
+              <textarea required="required" type="text" name="newKeywordDescription" placeholder="Description" rows="4"
                 class="form-control mt-1"><%= state.keywords[i].description%></textarea>
             </div>
 

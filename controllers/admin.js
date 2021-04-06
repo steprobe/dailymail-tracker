@@ -10,28 +10,18 @@ exports.saveKeywords = async (form) => {
   if (Array.isArray(form.newKeywordName)) {
     const objects = [];
     for (let i = 0; i < form.newKeywordName.length; i += 1) {
-      if (
-        form.newKeywordName[i] &&
-        form.newKeywordType[i] &&
-        form.newKeywordDescription[i]
-      ) {
+      if (form.newKeywordName[i] && form.newKeywordDescription[i]) {
         objects.push({
           matches: form.newKeywordName[i].split(','),
-          type: form.newKeywordType[i],
           description: form.newKeywordDescription[i],
         });
       }
     }
 
     await Keyword.create(objects);
-  } else if (
-    form.newKeywordName &&
-    form.newKeywordType &&
-    form.newKeywordDescription
-  ) {
+  } else if (form.newKeywordName && form.newKeywordDescription) {
     await Keyword.create({
       matches: form.newKeywordName.split(','),
-      type: form.newKeywordType,
       description: form.newKeywordDescription,
     });
   }

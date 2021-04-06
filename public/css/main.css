@@ -67,9 +67,9 @@ body {
   border-radius: 8px; }
   @media (min-width: 768px) {
     .card-copy {
-      padding-left: 10%;
-      padding-right: 10%; } }
-  @media (min-width: 0) {
+      padding-left: 12%;
+      padding-right: 12%; } }
+  @media (max-width: 991.98px) {
     .card-copy {
       padding-left: 4%;
       padding-right: 4%; } }

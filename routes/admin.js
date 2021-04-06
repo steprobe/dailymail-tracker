@@ -1,4 +1,5 @@
 const express = require('express');
+const os = require('os');
 const auth = require('../middleware/auth');
 const track = require('../jobs/track');
 const { getRankings } = require('../controllers/main');
@@ -51,5 +52,15 @@ app.post('/admin/saveKeywords', auth, async (req, res) => {
 
   return res.redirect('/admin/keywords');
 });
+
+app.get('/admin/healthcheck', async (req, res) =>
+  res.status(200).json({
+    uptime: process.uptime(),
+    message: 'OK',
+    timestamp: Date.now(),
+    free: `${os.freemem() / (1024 * 1024)} MB`,
+    total: `${os.totalmem() / (1024 * 1024)} MB`,
+  }),
+);
 
 module.exports = app;

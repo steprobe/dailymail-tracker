@@ -19,40 +19,51 @@
     <%- include('partials/menu', { active: 'home' }) %>
 
 
-      <div class="container">
+      <div class="container p-0">
 
         <div class="card-copy">
-          <h3 class="header">Word of the day, <%= state.helpers.formatSyncDate(state) %>
+          <h3 class="header">Dailymail word of the day
+            <h3 class="header">
+              <%= state.helpers.formatSyncDate(state) %>
+            </h3>
           </h3>
 
           <hr class="short" />
 
           <% if(!state.helpers.hasRankings(state)) {%>
-            <p class="text-center mt-4"> No word of the day yet, check back later! </p>
+            <p class="text-center"> No word of the day yet, check back later! </p>
             <% } else {%>
 
               <div class="word-of-the-day text-center">
                 <%= state.helpers.getTodaysWord(state) %>
               </div>
 
-              <hr class="mt-4 mb-4" />
+              <hr />
 
-              <div class="container defn-text mb-5">
-                <h4 class="header text-left">Definition</h4>
-                <%- state.helpers.getTodaysWordDescription(state) %>
+              <div class="container defn-text p-0">
+                <div class="row">
+                  <div class="col">
+                    <h4 class="header text-left">Definition</h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <%- state.helpers.getTodaysWordDescription(state) %>
+                  </div>
+                </div>
               </div>
 
-              <hr class="mt-4 mb-4" />
+              <hr />
 
-              <div class="container">
+              <div class="container no-gutters p-0">
                 <div class="row">
                   <div class="col-md-8">
-                    <p class="subtitle text-center text-muted mt-2">
+                    <p class="subtitle text-center text-muted">
                       Today, this warranted <%= state.helpers.getTodaysWordArticleCount(state)%>
                         articles, such as:
                     </p>
 
-                    <div class="container last-item-gone">
+                    <div class="container last-item-gone p-0">
                       <% const articles=state.helpers.getDisplayArticles(state); %>
                         <% for(let i=0; i < articles.length; i +=1) {%>
                           <div class="row d-flex align-items-center">
@@ -72,10 +83,10 @@
                   </div>
                   <div class="col-md-4">
 
-                    <hr class="d-md-none" />
+                    <hr class="d-md-none m-4" />
 
                     <p class="subtitle text-center text-muted mt-2">
-                      And the runners up:
+                      And the runners up
                     <ol>
                       <% const runnersUp=state.helpers.getTodaysWordRunnersUp(state); %>
                         <% for(let i=0; i < runnersUp.length;i +=1) { %>

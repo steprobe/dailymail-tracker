@@ -44,3 +44,11 @@ exports.getTodaysWordRunnersUp = (state) => {
     articleCount: it.articles.length,
   }));
 };
+
+exports.getTrackedWords = (state) => {
+  const keywords = state.keywords.map((it) => it.matches[0]);
+
+  return `${keywords.slice(0, keywords.length - 1).join(', ')} and ${
+    keywords[keywords.length - 1]
+  }`;
+};

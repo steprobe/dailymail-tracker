@@ -1,5 +1,4 @@
 const express = require('express');
-const os = require('os');
 const auth = require('../middleware/auth');
 const track = require('../jobs/track');
 const { getRankings } = require('../controllers/main');
@@ -58,8 +57,7 @@ app.get('/admin/healthcheck', async (req, res) =>
     uptime: process.uptime(),
     message: 'OK',
     timestamp: Date.now(),
-    free: `${os.freemem() / (1024 * 1024)} MB`,
-    total: `${os.totalmem() / (1024 * 1024)} MB`,
+    usage: `${process.memoryUsage().heapTotal / (1024 * 1024)} MB`,
   }),
 );
 

@@ -6,10 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="/css/admin.css" />
+    <%- include('../partials/analytics') %>
 
-    <title>Admin Login</title>
+      <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="/css/admin.css" />
+
+      <title>Admin Login</title>
   </head>
 
   <body>
@@ -27,7 +29,7 @@
             <input type="password" class="form-control" name="password"></input>
           </div>
 
-          <% if(failed) { %>
+          <% if(state.failed) { %>
             <div class="alert alert-danger">Login failed</div>
             <% } %>
 

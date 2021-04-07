@@ -12,7 +12,12 @@ const {
 const app = express.Router();
 
 app.get('/superhans', (req, res) =>
-  res.render('admin/adminLogin', { failed: false }),
+  res.render('admin/adminLogin', {
+    state: {
+      analyticsId: process.env.G_ANALYTICS_ID,
+      failed: false,
+    },
+  }),
 );
 app.post('/superhans/login', (req, res) => login(req, res));
 app.post('/superhans/logout', (req, res) => logout(req, res));
@@ -34,7 +39,12 @@ app.get('/admin/articles', auth, async (req, res) => {
 
 app.get('/admin/rankings', auth, async (req, res) => {
   const rankings = await getRankings();
-  res.render('admin/adminRankings', { state: { rankings } });
+  res.render('admin/adminRankings', {
+    state: {
+      analyticsId: process.env.G_ANALYTICS_ID,
+      rankings,
+    },
+  });
 });
 
 app.post('/admin/sync', auth, async (req, res) => {

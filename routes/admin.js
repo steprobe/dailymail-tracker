@@ -1,5 +1,4 @@
 const express = require('express');
-const os = require('os');
 const auth = require('../middleware/auth');
 const track = require('../jobs/track');
 const { getRankings } = require('../controllers/main');
@@ -13,7 +12,12 @@ const {
 const app = express.Router();
 
 app.get('/superhans', (req, res) =>
-  res.render('admin/adminLogin', { failed: false }),
+  res.render('admin/adminLogin', {
+    state: {
+      analyticsId: process.env.G_ANALYTICS_ID,
+      failed: false,
+    },
+  }),
 );
 app.post('/superhans/login', (req, res) => login(req, res));
 app.post('/superhans/logout', (req, res) => logout(req, res));
@@ -35,7 +39,12 @@ app.get('/admin/articles', auth, async (req, res) => {
 
 app.get('/admin/rankings', auth, async (req, res) => {
   const rankings = await getRankings();
-  res.render('admin/adminRankings', { state: { rankings } });
+  res.render('admin/adminRankings', {
+    state: {
+      analyticsId: process.env.G_ANALYTICS_ID,
+      rankings,
+    },
+  });
 });
 
 app.post('/admin/sync', auth, async (req, res) => {
@@ -58,8 +67,7 @@ app.get('/admin/healthcheck', async (req, res) =>
     uptime: process.uptime(),
     message: 'OK',
     timestamp: Date.now(),
-    free: `${os.freemem() / (1024 * 1024)} MB`,
-    total: `${os.totalmem() / (1024 * 1024)} MB`,
+    usage: `${process.memoryUsage().heapTotal / (1024 * 1024)} MB`,
   }),
 );
 

@@ -22,6 +22,7 @@ app.get('/', async (req, res) => {
   const state = {
     rankings,
     metadata,
+    analyticsId: process.env.G_ANALYTICS_ID,
     helpers: {
       formatSyncDate,
       getTodaysWord,
@@ -39,6 +40,7 @@ app.get('/about', async (req, res) => {
   const keywords = await Keyword.find({});
   res.render('about', {
     state: {
+      analyticsId: process.env.G_ANALYTICS_ID,
       keywords,
       helpers: {
         getTrackedWords,

@@ -33,6 +33,7 @@ exports.getState = async () => {
   const metadata = await Metadata.findOne({});
 
   return {
+    analyticsId: process.env.G_ANALYTICS_ID,
     keywords,
     articles,
     metadata,
@@ -52,7 +53,12 @@ exports.login = async (req, res) => {
     res.cookie('token', token);
     res.redirect('/admin');
   } else {
-    res.render('admin/adminLogin', { failed: true });
+    res.render('admin/adminLogin', {
+      state: {
+        analyticsId: process.env.G_ANALYTICS_ID,
+        failed: true,
+      },
+    });
   }
 };
 

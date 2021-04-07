@@ -1,9 +1,10 @@
+const cache = require('memory-cache');
+
 const Article = require('../models/Article');
 const Keyword = require('../models/Keyword');
 
-exports.getRankings = async () => {
+const generateRankings = async () => {
   const keywords = await Keyword.find({});
-
   const rankings = await Promise.all(
     keywords.map(async (it) => ({
       keyword: it,
@@ -18,4 +19,14 @@ exports.getRankings = async () => {
   );
 
   return sortedRankings;
+};
+
+exports.getRankings = async () => {
+  let rankings = cache.get('rankings');
+  if (!rankings) {
+    rankings = await generateRankings();
+    cache.put('rankings', rankings);
+  }
+
+  return rankings;
 };

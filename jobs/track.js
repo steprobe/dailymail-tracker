@@ -1,4 +1,5 @@
 const cheerio = require('cheerio');
+const cache = require('memory-cache');
 const got = require('got');
 const Keywords = require('../models/Keyword');
 const Article = require('../models/Article');
@@ -88,6 +89,8 @@ const track = async () => {
   await MetaData.create({
     itemsSynced: results.length,
   });
+
+  cache.clear();
 
   console.log(`Saved ${results.length} articles`);
 };

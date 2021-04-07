@@ -4,12 +4,12 @@ const auth = (req, res, next) => {
   const { token } = req.cookies;
 
   if (!token) {
-    res.redirect('superhans/login');
+    res.redirect('superhans');
   } else {
     try {
       jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
         if (error) {
-          res.redirect('superhans/login');
+          res.redirect('superhans');
         } else {
           req.user = decoded.user;
           next();

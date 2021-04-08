@@ -139,9 +139,12 @@ body {
 
 .word-of-the-day {
   margin-top: 2rem;
-  width: auto;
-  font: 7rem Doris, Serif;
+  font: 3.4rem Doris, Serif;
   font-weight: 300;
+
+  @include media-breakpoint-up(md) {
+    font: 7rem Doris, Serif;
+  }
 }
 
 .home-article-image {

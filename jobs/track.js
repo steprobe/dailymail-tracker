@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 const cache = require('memory-cache');
 const got = require('got');
+const Sentry = require('@sentry/node');
 const Keywords = require('../models/Keyword');
 const Article = require('../models/Article');
 const MetaData = require('../models/Metadata');
@@ -92,6 +93,9 @@ const track = async () => {
 
   cache.clear();
 
+  Sentry.addBreadcrumb({
+    message: `Articles Tracking finished with ${results.length} articles`,
+  });
   console.log(`Saved ${results.length} articles`);
 };
 

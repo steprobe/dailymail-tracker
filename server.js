@@ -3,7 +3,13 @@ const express = require('express');
 const listEndpoints = require('express-list-endpoints');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const Sentry = require('@sentry/node');
 const connectToDb = require('./config/db');
+
+Sentry.init({
+  dsn: process.env.SENTRY_DNS,
+  tracesSampleRate: 1.0,
+});
 
 const app = express();
 

@@ -1,5 +1,5 @@
 const cache = require('memory-cache');
-
+const Sentry = require('@sentry/node');
 const Article = require('../models/Article');
 const Keyword = require('../models/Keyword');
 
@@ -24,8 +24,12 @@ const generateRankings = async () => {
 exports.getRankings = async () => {
   let rankings = cache.get('rankings');
   if (!rankings) {
+    Sentry.addBreadcrumb({
+      message: `No rankings cached, generating new ones`,
+    });
+
     rankings = await generateRankings();
-    cache.put('rankings', rankings);
+    // cache.put('rankings', rankings);
   }
 
   return rankings;

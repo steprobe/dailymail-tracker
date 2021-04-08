@@ -1,5 +1,9 @@
 const express = require('express');
-const { getRankings } = require('../controllers/main');
+const {
+  getRankings,
+  getKeywords,
+  getMetadata,
+} = require('../controllers/main');
 const {
   formatSyncDate,
   getTodaysWord,
@@ -10,14 +14,14 @@ const {
   getTrackedWords,
   hasRankings,
 } = require('../viewHelpers/viewHelpers');
-const Metadata = require('../models/Metadata');
-const Keyword = require('../models/Keyword');
 
 const app = express.Router();
 
 app.get('/', async (req, res) => {
+  console.log('Rankings...');
   const rankings = await getRankings();
-  const metadata = await Metadata.findOne({});
+  console.log('Meta...');
+  const metadata = await getMetadata();
 
   const state = {
     rankings,
@@ -37,7 +41,7 @@ app.get('/', async (req, res) => {
   res.render('home', { state });
 });
 app.get('/about', async (req, res) => {
-  const keywords = await Keyword.find({});
+  const keywords = await getKeywords();
   res.render('about', {
     state: {
       analyticsId: process.env.G_ANALYTICS_ID,

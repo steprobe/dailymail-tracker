@@ -14,23 +14,50 @@ const generateRankings = async () => {
     })),
   );
 
-  const sortedRankings = rankings.sort(
+  return rankings.sort(
     (one, other) => other.articles.length - one.articles.length,
   );
-
-  return sortedRankings;
 };
 
 exports.getRankings = async () => {
   let rankings = cache.get('rankings');
   if (!rankings) {
+    console.log('rank cache miss');
     Sentry.addBreadcrumb({
-      message: `No rankings cached, generating new ones`,
+      message: `getRankings cache miss`,
     });
 
     rankings = await generateRankings();
-    // cache.put('rankings', rankings);
+    cache.put('rankings', rankings);
   }
 
   return rankings;
+};
+
+exports.getKeywords = async () => {
+  let keywords = cache.get('keywords');
+  if (!keywords) {
+    Sentry.addBreadcrumb({
+      message: `getKeywords cache miss`,
+    });
+
+    keywords = await Keyword.find({});
+    cache.put('keywords', keywords);
+  }
+
+  return keywords;
+};
+
+exports.getMetadata = async () => {
+  let metadata = cache.get('metadata');
+  if (!metadata) {
+    Sentry.addBreadcrumb({
+      message: `getMetadata cache miss`,
+    });
+
+    metadata = await Keyword.find({});
+    cache.put('metadata', metadata);
+  }
+
+  return metadata;
 };

@@ -7,6 +7,7 @@ const Sentry = require('@sentry/node');
 const connectToDb = require('./config/db');
 
 Sentry.init({
+  environment: process.env.NODE_ENV,
   dsn: process.env.SENTRY_DNS,
   tracesSampleRate: 1.0,
 });
@@ -15,6 +16,7 @@ const app = express();
 
 connectToDb();
 
+app.use(Sentry.Handlers.requestHandler());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
@@ -26,6 +28,8 @@ app.set('view engine', 'ejs');
 
 app.use('/', require('./routes/main'));
 app.use('/', require('./routes/admin'));
+
+app.use(Sentry.Handlers.errorHandler());
 
 console.log(listEndpoints(app));
 

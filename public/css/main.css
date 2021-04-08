@@ -60,6 +60,11 @@ body {
   text-align: left;
   font: 1.15rem Doris, Serif; }
 
+.header {
+  font-family: sans-serif;
+  font-weight: 300 !important;
+  color: #305f79 !important; }
+
 .card-copy {
   background-color: #fcfcfc;
   padding-top: 2rem;
@@ -76,10 +81,6 @@ body {
   .card-copy hr.short {
     background-color: #305f79;
     width: 160px; }
-  .card-copy .header {
-    font-family: sans-serif;
-    font-weight: 300;
-    color: #305f79; }
   .card-copy p {
     line-height: 30px !important;
     text-align: left;
@@ -94,6 +95,7 @@ body {
 
 .word-of-the-day {
   margin-top: 2rem;
+  width: auto;
   font: 7rem Doris, Serif;
   font-weight: 300; }
 

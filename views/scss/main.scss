@@ -3,7 +3,6 @@
 @import '../../node_modules/bootstrap/scss/_variables.scss';
 @import '../../node_modules/bootstrap/scss/mixins';
 
-//https://coolors.co/048a81-06d6a0-54c6eb-8a89c0-cda2ab
 $background-color: white;
 $nav-item-selected: #305f79;
 $nav-item-hover: lighten(
@@ -14,17 +13,6 @@ $card-background: darken(#ffffff, 1%);
 $card-header-text: #305f79;
 $card-text: #1a2c42;
 
-// $background-color: #ede0d4;
-// $nav-item-text-color: #7f5539;
-// $nav-item-hover-text-color: #cd9777;
-// $nav-item-selected-underline: #7f5539;
-// $nav-item-hover-underline: #cd9777;
-// $almond: #ede0d4ff;
-// $desert-sand: #e6ccb2ff;
-// $tan: #ddb892ff;
-// $cafe-au-lait: #b08968ff;
-// $coffee: #7f5539ff;
-// $brown-sugar: #9c6644ff;
 * {
   box-sizing: border-box;
 }
@@ -101,6 +89,12 @@ body {
   font: 1.15rem Doris, Serif;
 }
 
+.header {
+  font-family: sans-serif;
+  font-weight: 300 !important;
+  color: $card-header-text !important;
+}
+
 .card-copy {
   background-color: $card-background;
   padding-top: 2rem;
@@ -125,12 +119,6 @@ body {
     }
   }
 
-  .header {
-    font-family: sans-serif;
-    font-weight: 300;
-    color: $card-header-text;
-  }
-
   p {
     line-height: 30px !important;
     text-align: left;
@@ -151,6 +139,7 @@ body {
 
 .word-of-the-day {
   margin-top: 2rem;
+  width: auto;
   font: 7rem Doris, Serif;
   font-weight: 300;
 }

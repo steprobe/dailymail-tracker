@@ -18,9 +18,7 @@ const {
 const app = express.Router();
 
 app.get('/', async (req, res) => {
-  console.log('Rankings...');
   const rankings = await getRankings();
-  console.log('Meta...');
   const metadata = await getMetadata();
 
   const state = {

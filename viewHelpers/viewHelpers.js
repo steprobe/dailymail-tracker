@@ -14,7 +14,7 @@ exports.formatSyncDate = (state) => {
     'December',
   ];
 
-  const date = state.metaData ? new Date(state.metaData.createdAt) : new Date();
+  const date = state.metadata ? new Date(state.metadata.createdAt) : new Date();
   return `${months[date.getMonth()]} ${date.getDate()}`;
 };
 

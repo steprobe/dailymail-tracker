@@ -2,6 +2,7 @@ const cache = require('memory-cache');
 const Sentry = require('@sentry/node');
 const Article = require('../models/Article');
 const Keyword = require('../models/Keyword');
+const Metadata = require('../models/Metadata');
 
 const generateRankings = async () => {
   const keywords = await Keyword.find({});
@@ -22,7 +23,7 @@ const generateRankings = async () => {
 exports.getRankings = async () => {
   let rankings = cache.get('rankings');
   if (!rankings) {
-    console.log('rank cache miss');
+    console.log('Rank cache miss');
     Sentry.addBreadcrumb({
       message: `getRankings cache miss`,
     });
@@ -55,7 +56,7 @@ exports.getMetadata = async () => {
       message: `getMetadata cache miss`,
     });
 
-    metadata = await Keyword.find({});
+    metadata = await Metadata.findOne({});
     cache.put('metadata', metadata);
   }
 

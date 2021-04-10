@@ -8,8 +8,8 @@
 
     <%- include('partials/analytics') %>
 
-    <script data-ad-client="ca-pub-6544502231042514" async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <script data-ad-client="ca-pub-6544502231042514" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -84,7 +84,10 @@
                           <div class="row d-flex align-items-center">
                             <div class="col-md-8">
                               <p>
-                                <%= articles[i].headline%>
+                                <a href="https://dailymail.co.uk<%= articles[i].href%>" target="_blank"
+                                  class="card-link">
+                                  <%= articles[i].headline%>
+                                </a>
                               </p>
                             </div>
                             <div class="col-md-4"><img class=" home-article-image p-2"

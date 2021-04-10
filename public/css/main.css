@@ -116,6 +116,9 @@ body {
   font-size: 1.6em !important;
   text-decoration: none !important; }
 
+.card-link {
+  color: #1a2c42 !important; }
+
 .fa-facebook {
   color: #3b5998; }
 

@@ -33,12 +33,12 @@ exports.getTodaysWordDescription = (state) =>
   hasRankings(state) ? state.rankings[0].keyword.description : 'no description';
 
 exports.getDisplayArticles = (state) => {
-  const articleCount = Math.min(8, state.rankings[0].articles.length);
+  const articleCount = Math.min(4, state.rankings[0].articles.length);
   return state.rankings[0].articles.slice(0, articleCount);
 };
 
 exports.getTodaysWordRunnersUp = (state) => {
-  const runnerUpCount = Math.min(10, state.rankings.length - 1);
+  const runnerUpCount = Math.min(3, state.rankings.length - 1);
   return state.rankings.slice(1, runnerUpCount + 1).map((it) => ({
     title: it.keyword.matches[0],
     articleCount: it.articles.length,

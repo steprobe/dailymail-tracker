@@ -82,7 +82,6 @@ body {
     background-color: #305f79;
     width: 160px; }
   .card-copy p {
-    line-height: 30px !important;
     text-align: left;
     margin-top: 1rem;
     font-weight: 300;

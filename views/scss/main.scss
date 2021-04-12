@@ -99,7 +99,6 @@ body {
   background-color: $card-background;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  // padding: 2rem 10% 2rem 10%;
   border-radius: 8px;
 
   @include media-breakpoint-up(md) {
@@ -120,7 +119,6 @@ body {
   }
 
   p {
-    line-height: 30px !important;
     text-align: left;
     margin-top: 1rem;
     font-weight: 300;

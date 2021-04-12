@@ -83,12 +83,6 @@ body {
   border-radius: 8px 8px 0 0;
 }
 
-.defn-text {
-  color: $card-text;
-  text-align: left;
-  font: 1.15rem Doris, Serif;
-}
-
 .header {
   font-family: sans-serif;
   font-weight: 300 !important;
@@ -121,18 +115,13 @@ body {
   p {
     text-align: left;
     margin-top: 1rem;
-    font-weight: 300;
-    color: $card-text;
-
-    &.normal-copy {
-      font: 1.15rem Doris, Serif;
-    }
-
-    &.subtitle {
-      font: 1.4rem Doris, Sans-Serif;
-      font-weight: 300;
-    }
   }
+}
+
+.card-text {
+  font-weight: 300;
+  color: $card-text;
+  text-align: left;
 }
 
 .word-of-the-day {

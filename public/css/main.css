@@ -55,11 +55,6 @@ body {
   z-index: 1;
   border-radius: 8px 8px 0 0; }
 
-.defn-text {
-  color: #1a2c42;
-  text-align: left;
-  font: 1.15rem Doris, Serif; }
-
 .header {
   font-family: sans-serif;
   font-weight: 300 !important;
@@ -83,14 +78,12 @@ body {
     width: 160px; }
   .card-copy p {
     text-align: left;
-    margin-top: 1rem;
-    font-weight: 300;
-    color: #1a2c42; }
-    .card-copy p.normal-copy {
-      font: 1.15rem Doris, Serif; }
-    .card-copy p.subtitle {
-      font: 1.4rem Doris, Sans-Serif;
-      font-weight: 300; }
+    margin-top: 1rem; }
+
+.card-text {
+  font-weight: 300;
+  color: #1a2c42;
+  text-align: left; }
 
 .word-of-the-day {
   margin-top: 2rem;
